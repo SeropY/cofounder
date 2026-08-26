@@ -500,6 +500,131 @@
   }
 </style>
 
+
+<style>
+  /* ---------- toolkeuze ---------- */
+
+  .picker {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: .75rem;
+  }
+
+  @media (max-width: 30rem) {
+    .picker { grid-template-columns: minmax(0, 1fr); }
+  }
+
+  .pick {
+    appearance: none;
+    -webkit-appearance: none;
+    text-align: left;
+    background: var(--card);
+    border: 1px solid var(--rule);
+    border-radius: .75rem;
+    padding: 1.0625rem 1.125rem;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: .3rem;
+    box-shadow: var(--shadow);
+    transition: border-color .15s ease;
+  }
+
+  .pick:hover { border-color: var(--route); }
+
+  .pick[aria-pressed="true"] {
+    border-color: var(--route);
+    border-width: 2px;
+    padding: 1rem 1.0625rem;
+    background: var(--route-soft);
+  }
+
+  .pick-name {
+    font-family: var(--display);
+    font-size: 1.125rem;
+    font-weight: 700;
+    letter-spacing: -.01em;
+  }
+
+  .pick-sub {
+    font-size: .875rem;
+    line-height: 1.4;
+    color: var(--ink-soft);
+  }
+
+  .pick[aria-pressed="true"] .pick-sub { color: var(--ink); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .pick { transition: none; }
+  }
+
+  .lane[hidden] { display: none; }
+
+  .lane {
+    display: flex;
+    flex-direction: column;
+    gap: 3.5rem;
+  }
+
+  .switch {
+    font-size: .875rem;
+    color: var(--ink-faint);
+  }
+
+  .switch button {
+    appearance: none;
+    background: none;
+    border: none;
+    padding: 0;
+    font: inherit;
+    color: var(--route);
+    text-decoration: underline;
+    text-underline-offset: .16em;
+    cursor: pointer;
+  }
+
+  /* ---------- prompt-kaart met uitleg ---------- */
+
+  .why {
+    display: grid;
+    gap: .5rem;
+    margin-bottom: 1rem;
+  }
+
+  .why div {
+    display: grid;
+    grid-template-columns: 8.5rem 1fr;
+    gap: .75rem;
+    font-size: .9375rem;
+    line-height: 1.5;
+  }
+
+  .why dt, .why-k {
+    font-family: var(--display);
+    font-size: .75rem;
+    font-weight: 600;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    padding-top: .18rem;
+  }
+
+  @media (max-width: 30rem) {
+    .why div { grid-template-columns: minmax(0, 1fr); gap: .1rem; }
+  }
+
+  .step-note {
+    font-size: .9375rem;
+    line-height: 1.55;
+    color: var(--ink-soft);
+  }
+
+  .halte-kop {
+    display: flex;
+    flex-direction: column;
+    gap: .3rem;
+  }
+</style>
 <div class="wrap">
 
   <header>
@@ -507,15 +632,41 @@
     <h1>Co-founder in een map</h1>
     <p class="thesis">Een tool voert uit wat je vraagt. Een co-founder weet wie je bent.
       <strong>Het verschil is niet het model, het is de context die jij eenmalig opschrijft.</strong></p>
-    <p>Hieronder zet je in vijf minuten vast wie je bent en hoe je wilt dat er met je
-      gewerkt wordt. Dat komt in een bestand dat vanaf dat moment elk gesprek meegaat,
-      zodat je nooit meer bij nul begint.</p>
+    <p>Niet meer prompten, maar een werkcontext bouwen. Hieronder zet je eenmalig vast wie
+      je bent en hoe je wilt dat er met je gewerkt wordt. Dat komt in twee bestanden die
+      vanaf dat moment meegaan, zodat je nooit meer bij nul begint.</p>
+    <p>De methode is voor elke tool hetzelfde: vier haltes, twee bestanden, twee gewoontes.
+      Alleen de knoppen verschillen. Kies hieronder waar je mee werkt, dan zie je alleen
+      de route die bij jou hoort.</p>
   </header>
+
+  <section id="keuze">
+    <div class="sec-head">
+      <p class="label">Stap 1</p>
+      <h2>Welke AI gebruik je?</h2>
+    </div>
+    <div class="picker">
+      <button class="pick" type="button" id="pickClaude" aria-pressed="false" aria-controls="lane-claude">
+        <span class="pick-name">Claude</span>
+        <span class="pick-sub">De Claude-versie, met of zonder Co-Work</span>
+      </button>
+      <button class="pick" type="button" id="pickGpt" aria-pressed="false" aria-controls="lane-gpt">
+        <span class="pick-name">ChatGPT</span>
+        <span class="pick-sub">De ChatGPT-versie, met een Project</span>
+      </button>
+    </div>
+    <p class="step-note" id="pickHint">Werk je met iets anders, bijvoorbeeld Gemini of
+      Copilot? Kies dan ChatGPT. Die route gaat uit van instructies die je eenmalig
+      vastlegt en bestanden die je zelf bewaart, en dat werkt in vrijwel elke tool.</p>
+  </section>
+
+  <!-- ============================ CLAUDE ============================ -->
+  <div class="lane" id="lane-claude" hidden>
 
   <section>
     <div class="sec-head">
-      <p class="label">Beginnen</p>
-      <h2>Plak dit in Claude</h2>
+      <p class="label">Claude &middot; Halte 1</p>
+      <h2>De grondwet</h2>
     </div>
     <p>Twee routes. Kies optie A als je Claude Co-Work hebt en optie B als je de chat
       window gebruikt.</p>
@@ -564,16 +715,19 @@
 
     </div>
 
-    <p>Werk je met een andere AI-tool? De vragenlijst werkt daar ook. Je bewaart de twee
-      bestanden dan zelf, net als in route B.</p>
-
-    <p>Acht vragen om jouw Co-founder document te creëren. Kopieer het onderstaande naar
-      Claude of je gekozen AI-tool.</p>
-
     <div class="copy-card">
       <div class="copy-head">
         <p class="label">De vragenlijst</p>
         <button class="btn" id="copyBtn" type="button">Kopieer</button>
+      </div>
+      <div class="why" style="padding: 1.125rem 1.125rem 0;">
+        <div><span class="why-k">Waarvoor</span><span>Acht korte vragen waaruit je twee
+          bestanden ontstaan: wie je bent, en wat er nu speelt.</span></div>
+        <div><span class="why-k">Waar</span><span>Plakken in Claude, in Co-Work of in een
+          gewoon gesprek.</span></div>
+        <div><span class="why-k">Daarna</span><span>Je hebt
+          <span class="tt">CLAUDE.md</span> en <span class="tt">geheugen.md</span>, en
+          Claude vraagt wat je wilt doen.</span></div>
       </div>
       <pre id="prompt">Je gaat mij helpen een CLAUDE.md en een geheugen.md te schrijven, zodat je vanaf nu weet wie ik ben. Stel me de vragen hieronder in vier rondes. Gebruik knoppen als je die hebt; anders nummer je de opties. Nooit meer dan twee vragen tegelijk. Vraag eerst hoe je mij mag aanspreken en gebruik die aanspreekvorm daarna.
 
@@ -754,44 +908,411 @@ Kom buiten de slotvraag niet uit jezelf over koppelingen of skills beginnen; aan
     </ol>
   </section>
 
+  <section>
+    <div class="sec-head">
+      <p class="label">Tot slot</p>
+      <h2>Ga aan het werk</h2>
+    </div>
+    <p>De methode is niet klaar als de bestanden er staan. Ze worden pas iets waard
+      doordat je ze bijhoudt terwijl je echt werk doet. Pak dus het ding dat je bij vraag
+      vijf hebt opgeschreven, en begin daarmee. Vandaag nog, niet volgende week.</p>
+    <p class="switch">Toch met ChatGPT aan de slag?
+      <button type="button" data-switch="gpt">Bekijk de ChatGPT-route</button></p>
+  </section>
+
+  </div><!-- /lane claude -->
+
+  <!-- ============================ CHATGPT ============================ -->
+  <div class="lane" id="lane-gpt" hidden>
+
+  <section>
+    <div class="sec-head">
+      <p class="label">ChatGPT &middot; Halte 1</p>
+      <h2>De grondwet</h2>
+    </div>
+    <p>Je legt eenmalig vast wie je bent, waar je mee bezig bent en hoe je wilt dat er met
+      je gewerkt wordt. In ChatGPT doe je dat in een <strong>Project</strong>: een
+      afgeschermde werkruimte met eigen instructies en eigen bestanden, waar elk gesprek
+      dat je erin begint gebruik van maakt.</p>
+
+    <div class="files">
+      <div class="file">
+        <p class="fname">Project Instructions</p>
+        <h3>De vaste instructies</h3>
+        <p>Het veld bij je Project waarin staat hoe ChatGPT binnen dat Project met je moet
+          werken. Dit is wat er in de praktijk meegaat in elk gesprek in dat Project.</p>
+      </div>
+      <div class="file">
+        <p class="fname">persoonlijke-instructies.md</p>
+        <h3>Jouw leesbare versie</h3>
+        <p>Hetzelfde verhaal als tekstbestand: leesbaar, controleerbaar, en van jou. Je
+          past het aan, je neemt het mee, en je plakt het in het instructieveld.</p>
+      </div>
+    </div>
+
+    <div class="note">
+      <p class="label">Let op het verschil</p>
+      <p>Een bestand in je Project is niet hetzelfde als het instructieveld. Alleen wat in
+        <strong>Project Instructions</strong> staat, geldt automatisch als instructie voor
+        elk gesprek. Zet de tekst uit <span class="tt">persoonlijke-instructies.md</span>
+        er dus ook echt in; het bestand alleen uploaden is niet genoeg.</p>
+    </div>
+
+    <ol class="steps">
+      <li>Maak in ChatGPT een nieuw <strong>Project</strong> aan en geef het een naam,
+        bijvoorbeeld <span class="tt">Mijn werk</span>.</li>
+      <li>Open een gesprek binnen dat Project en plak het blok hieronder.</li>
+      <li>Beantwoord de vragen. Reken op vijf minuten.</li>
+      <li>Zet de tekst van <span class="tt">persoonlijke-instructies.md</span> in het veld
+        met de projectinstructies, en bewaar beide bestanden bij je Project.</li>
+    </ol>
+
+    <div class="copy-card">
+      <div class="copy-head">
+        <p class="label">De vragenlijst</p>
+        <button class="btn" id="copyBtnGpt" type="button">Kopieer</button>
+      </div>
+      <div class="why" style="padding: 1.125rem 1.125rem 0;">
+        <div><span class="why-k">Waarvoor</span><span>Acht korte vragen waaruit je twee
+          bestanden ontstaan: hoe er met je gewerkt moet worden, en wat er nu speelt.</span></div>
+        <div><span class="why-k">Waar</span><span>In een gesprek binnen je ChatGPT-Project.</span></div>
+        <div><span class="why-k">Daarna</span><span>Je hebt
+          <span class="tt">persoonlijke-instructies.md</span> en
+          <span class="tt">geheugen.md</span>, en ChatGPT vraagt wat je wilt doen.</span></div>
+      </div>
+      <pre id="promptGpt">Je gaat mij helpen om een vaste werkcontext voor mij op te bouwen, zodat je mij binnen dit Project steeds beter kunt helpen.
+
+We bouwen samen twee bestanden:
+- persoonlijke-instructies.md, hoe je met mij moet werken en communiceren.
+- geheugen.md, mijn actuele werkcontext: waar ik aan werk, wat besloten is, wat nog speelt en wat de eerstvolgende stap is.
+
+Gebruik mijn eigen woorden waar mogelijk. Verzin niets.
+
+REGELS VOOR DEZE INTAKE
+- Vraag eerst hoe je mij mag aanspreken en gebruik die aanspreekvorm daarna.
+- Stel nooit meer dan twee vragen tegelijk.
+- Gebruik meerkeuze waar dat logisch is, en zeg erbij wanneer meerdere antwoorden mogelijk zijn.
+- Gebruik bij open vragen geen keuzelijst.
+- Houd je vragen kort.
+- Geef tijdens de intake geen advies en ga geen problemen oplossen.
+- Corrigeer ik een antwoord, gebruik dan mijn gecorrigeerde antwoord.
+- Vul niets in wat ik niet heb gezegd.
+- Maak de twee bestanden pas na de volledige intake.
+- Vraag daarna wat ik wil doen en begin daarna niets uit jezelf.
+
+RONDE 1, MIJN WERK
+
+Begin met: hoe mag ik je aanspreken? Gebruik mijn antwoord daarna als aanspreekvorm.
+
+1. Wat voor werk doe je?
+   A. Zelfstandig: advies, coaching, facilitatie of dienstverlening
+   B. Ik heb een bedrijf met mensen in dienst
+   C. In loondienst, en daarnaast een eigen onderneming
+   D. Nog aan het beginnen, de vorm staat nog niet vast
+   E. Anders, namelijk: ...
+
+2. Waar wil je dat ik je vooral bij help? Meerdere antwoorden mogelijk.
+   A. Meedenken en mijn denken scherp krijgen
+   B. Schrijven: mails, voorstellen, teksten
+   C. Uitzoeken en analyses
+   D. Regelwerk: agenda, administratie, opvolging
+   E. Anders, namelijk: ...
+
+Vraag daarna open: en voor wie doe je dat werk?
+Vraag daarna: waar heb je juist geen hulp bij nodig?
+
+RONDE 2, HOE IK WIL SAMENWERKEN
+
+3. Hoe wil je dat ik met je praat?
+   A. Kort en direct, kom ter zake
+   B. Kort, maar leg uit waarom je iets vindt
+   C. Stel eerst vragen voordat je met een antwoord komt
+   D. Uitgebreid, ik lees graag mee met je redenering
+   E. Anders, namelijk: ...
+
+4. Wat wil je niet van me? Meerdere antwoorden mogelijk.
+   A. Geen complimenten vooraf, begin bij de inhoud
+   B. Niet meegaan als ik iets onlogisch of tegenstrijdigs zeg
+   C. Niet gokken, zeg het als je iets niet weet
+   D. Niet meteen doen, eerst even overleggen
+   E. Anders, namelijk: ...
+
+Vraag daarna open: wat irriteert je het meest aan hoe AI meestal antwoordt?
+
+RONDE 3, WAAR HET WERK VASTLOOPT
+
+5. Waar loopt het bij mij elke week op vast? Het werk dat blijft liggen, of het ding waar ik telkens op stukloop.
+
+Is mijn antwoord vaag, vraag dan een keer: kun je een concreet voorbeeld geven van deze week?
+Noem ik meerdere dingen, vraag dan: welke daarvan geeft je deze week de meeste last?
+
+Gebruik mijn eigen woorden. Maak mijn antwoord niet mooier, algemener of zakelijker. Bewaar de andere genoemde punten, die komen later onder Speelt nog.
+
+RONDE 4, WAT JE NOOIT ZELFSTANDIG DOET
+
+6. Wat mag je nooit doen zonder dat ik het eerst gezien heb? Meerdere antwoorden mogelijk.
+   A. Iets versturen namens mij
+   B. Bestaande bestanden aanpassen of weggooien
+   C. Iets publiceren of naar buiten brengen
+   D. Geld uitgeven of iets bestellen
+   E. Anders, namelijk: ...
+
+Na deze vraag is de intake klaar.
+
+BESTAND 1: persoonlijke-instructies.md
+
+Kopjes: Wie ik ben / Wat ik van je verwacht / Hoe je met me praat / Waar ik elke week op vastloop / Wat je niet van me hoeft / Wat je nooit doet zonder mijn akkoord / Geheugen.
+
+Zet onder Geheugen deze afspraak: gebruik geheugen.md als mijn expliciete actuele werkcontext binnen dit Project. Spreken mijn bericht en geheugen.md elkaar tegen, vraag mij dan welke informatie leidend is.
+
+Regels: schrijf in de ik-vorm alsof ik het zelf heb geschreven. Gebruik mijn eigen woorden. Verzin niets. Elk onderdeel bevat minstens een zin die echt uit mijn antwoorden voortkomt; een onderdeel dat alleen uit overgenomen keuze-opties bestaat telt niet als antwoord. Houd het onder ongeveer een pagina en neem alleen op wat ik daadwerkelijk heb gegeven.
+
+BESTAND 2: geheugen.md
+
+Kopjes: Waar ik nu aan werk (maximaal drie punten) / Besloten / Speelt nog / Eerstvolgende stap.
+
+Zet het onderwerp uit ronde 3 dat mij deze week de meeste last geeft als eerste punt, in mijn eigen woorden. Gebruik onder Besloten een tabel met de kolommen datum, wat is besloten, wanneer kijken we hier opnieuw naar, en laat die tijdens deze intake leeg. Zet onder Speelt nog de andere onderwerpen uit ronde 3. Laat Eerstvolgende stap leeg als er nog geen concrete stap is bepaald.
+
+Regels: houd het compact, het is geen dagboek. Bewaar alleen wat nodig is om mijn werk voort te zetten. Gebruik mijn eigen woorden waar mogelijk. Voeg alleen besluiten toe die ik echt heb genomen. Verander of verwijder bestaande informatie niet zonder goede reden. Werk het bij zodra er tijdens het werk iets wezenlijks verandert.
+
+ALS DE BESTANDEN AL BESTAAN
+Overschrijf niets. Vergelijk de nieuwe informatie met wat er staat, laat zien wat je zou toevoegen, wijzigen of verwijderen, en vraag eerst of dat mag. Pas het bestand pas aan nadat ik akkoord geef.
+
+ALS JE GEEN BESTANDEN KUNT SCHRIJVEN
+Zet de volledige inhoud van beide bestanden in beeld en zeg erbij onder welke twee namen ik ze moet bewaren: persoonlijke-instructies.md en geheugen.md.
+
+NA DE INTAKE
+Zeg in een zin wat persoonlijke-instructies.md doet en in een zin wat geheugen.md doet. Zeg daarna: persoonlijke-instructies.md is een gewoon tekstbestand dat ik zelf mag aanpassen, dit is versie 1 en niet het eindpunt.
+
+Stel daarna deze vraag en wacht af:
+   Wat wil je nu doen?
+   A. Aan de slag met [het belangrijkste probleem uit ronde 3, kort geformuleerd]
+   B. Mijn agenda of mail koppelen
+   C. Eerst uitleg over hoe dit werkt
+   D. Niets nu, ik ga zelf verder
+
+Formuleer alle opties in de ik-vorm. Houd optie A kort, ongeveer zestig tekens, en vul hem concreet in met mijn eigen woorden, dus niet "mijn openstaande punt" maar bijvoorbeeld "de offertes die blijven liggen".
+
+Wat je per keuze doet:
+
+A. De taak: behandel het als echt werk en niet als demonstratie. Paste mijn hele klacht niet op de regel, breng het weggevallen deel dan terug in je eerste zin. Vraag naar het concrete geval van deze week en pak dat op. Sluit af met wat er in geheugen.md moet.
+
+B. Koppelen: dit kun je niet voor mij aanzetten, dus leg het uit. Een koppeling geeft je toegang tot informatie uit een andere dienst, zoals mijn agenda, mail of bestanden, zodat ik het je niet elke keer hoef te vertellen. Welke koppelingen er zijn en waar ze staan verschilt per account, per versie en per apparaat, en bij een zakelijk account kan een beheerder ze hebben uitgezet. Beloof dus niet wat er op mijn scherm staat: vraag wat ik zie en werk van daaruit. Begin bij de agenda, dat is de minst gevoelige inhoud. Bij mail wijs je op de afspraak over niet versturen die net in persoonlijke-instructies.md is gezet, en je zegt erbij dat dat een afspraak is en geen technische blokkade: wat een koppeling echt kan doen wordt bepaald door de rechten van die koppeling zelf. Geef daarna een bruikbare vraag mee in plaats van een opsomming, bijvoorbeeld: kijk naar mijn agenda van deze week en naar geheugen.md, waar gaat het knellen en wat zou ik nu moeten inplannen dat er niet staat? Is het gelukt, bied dan aan die vraag meteen samen te draaien. Sluit af met wat er in geheugen.md moet.
+
+C. Uitleg: drie alinea's plus een afsluitende vraag, in gewone taal, geen college. Waarom een vastgelegde werkcontext beter werkt dan het elke keer opnieuw vertellen, namelijk dat de context er al staat voordat het gesprek begint. Wat een Project toevoegt boven een los gesprek, namelijk dat de instructies en de bestanden daar blijven staan voor elk volgend gesprek. En wat het betekent om een vaste werkwijze vast te leggen voor werk dat steeds hetzelfde is, te doen zodra ik dezelfde uitleg drie keer heb getypt. Sluit deze tak nooit open af: eindig met dezelfde slotvraag, zonder deze optie en in de ik-vorm.
+
+D. Niets nu: twee zinnen en dan stoppen. Eerst wat er de volgende keer gebeurt, namelijk dat ik gewoon kan beginnen zonder iets te herhalen. Daarna de afsluitzin hieronder.
+
+Zeg aan het eind van keuze A, B of D een keer hardop, en niet vaker, dat een gesprek afsluiten met "leg vast wat we hebben besloten en wat de volgende stap is" het bestand geheugen.md bijwerkt. Doe dat ook al staat die afspraak al in persoonlijke-instructies.md. Bij keuze C niet, tenzij ik daarna alsnog voor "niets nu" kies.
+
+Kom buiten de slotvraag niet uit jezelf over koppelingen of vaste werkwijzen beginnen; aanbieden doe je alleen daar, uitleggen mag in keuze C.</pre>
+    </div>
+
+    <div class="note">
+      <p class="label">Als er geen bestanden verschijnen</p>
+      <p>Kan ChatGPT in jouw omgeving geen bestanden aanmaken, dan zet hij de volledige
+        inhoud in beeld. Kopieer die naar twee tekstbestanden met precies de namen
+        <span class="tt">persoonlijke-instructies.md</span> en
+        <span class="tt">geheugen.md</span>. Je bent niets kwijt: het gaat om de tekst,
+        niet om het bestandje.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <p class="label">ChatGPT &middot; Halte 2</p>
+      <h2>Het geheugen</h2>
+    </div>
+    <p><span class="tt">geheugen.md</span> is geen dagboek. Het is een klein bestand met
+      vier kopjes: waar je nu aan werkt, wat je hebt besloten, wat nog speelt, en wat de
+      volgende stap is. Meer niet, en dat is precies de bedoeling.</p>
+
+    <div class="files">
+      <div class="file">
+        <p class="fname">Het geheugen van ChatGPT zelf</p>
+        <h3>Onzichtbaar en impliciet</h3>
+        <p>ChatGPT kan zelf dingen over je onthouden. Handig, maar je ziet niet precies
+          wat er staat, je hebt het niet zelf geschreven, en je kunt het niet meenemen
+          naar een andere tool.</p>
+      </div>
+      <div class="file">
+        <p class="fname">geheugen.md</p>
+        <h3>Expliciet en van jou</h3>
+        <p>Jij bepaalt wat erin staat, je leest het terug, je corrigeert het, en het gaat
+          overal mee naartoe. Binnen je Project blijft het de werkcontext waar je naar
+          verwijst.</p>
+      </div>
+    </div>
+
+    <p>De gewoonte die deze halte doet werken is één zin, aan het eind van elk gesprek dat
+      ergens over ging:</p>
+    <p class="tell">Leg vast wat we hebben besloten en wat de volgende stap is, en geef me
+      de bijgewerkte geheugen.md.</p>
+    <p class="step-note">Zonder die gewoonte blijven je besluiten achter in een oude chat
+      die je over drie weken niet meer terugvindt. Mét die gewoonte staat er één klein
+      bestand dat je maandagochtend opent en waarin staat waar je gebleven was. Vervang
+      het bestand in je Project door de bijgewerkte versie.</p>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <p class="label">ChatGPT &middot; Halte 3</p>
+      <h2>Je agenda erbij</h2>
+    </div>
+    <p>Een koppeling geeft ChatGPT toegang tot informatie uit een andere dienst, zoals je
+      agenda, je mail of je bestanden. Daarmee hoef je niet meer te vertellen wat er
+      speelt: hij kan het zien.</p>
+    <p class="step-note">Welke koppelingen je hebt en waar ze staan, verschilt per account,
+      per versie en per apparaat, en bij een zakelijk account kan een beheerder ze hebben
+      uitgezet. Kijk dus eerst in je eigen instellingen wat er bij jou beschikbaar is,
+      voordat je hier tijd in steekt. Begin met de agenda: dat is de makkelijkste eerste
+      koppeling en de minst gevoelige inhoud.</p>
+
+    <div class="copy-card">
+      <div class="copy-head">
+        <p class="label">De eerste echte vraag</p>
+        <button class="btn" id="copyBtnAgenda" type="button">Kopieer</button>
+      </div>
+      <div class="why" style="padding: 1.125rem 1.125rem 0;">
+        <div><span class="why-k">Waarvoor</span><span>Om te zien wat een koppeling
+          toevoegt bovenop je geheugen.</span></div>
+        <div><span class="why-k">Waar</span><span>In je Project, zodra je agenda gekoppeld
+          is.</span></div>
+        <div><span class="why-k">Daarna</span><span>Je ziet waar je plannen en je werk niet
+          op elkaar aansluiten.</span></div>
+      </div>
+      <pre id="promptAgenda">Kijk naar mijn agenda van deze week en naar geheugen.md. Waar gaat het knellen en wat zou ik nu moeten inplannen dat er niet staat?</pre>
+    </div>
+
+    <p class="step-note">Dat is de interessante stap, want hij legt twee dingen naast
+      elkaar die normaal los van elkaar bestaan: wat er in je agenda staat, en wat er
+      volgens je eigen geheugen zou moeten gebeuren. Daar zit het gat.</p>
+
+    <div class="note">
+      <p class="label">Over mail</p>
+      <p>Koppel je mail pas als in je instructies staat dat er nooit iets verstuurd wordt
+        zonder jouw akkoord. En weet wat dat wel en niet is: het is een
+        <strong>afspraak</strong> met jou, geen technische blokkade. Wat een koppeling
+        werkelijk kan doen, wordt bepaald door de rechten van die koppeling zelf. Concepten
+        klaarzetten is nuttig; verzenden is een deur die maar één kant op gaat.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <p class="label">ChatGPT &middot; Halte 4</p>
+      <h2>Maak pas een vaste werkwijze als je hetzelfde werk drie keer hebt uitgelegd</h2>
+    </div>
+    <p>Sommige dingen doe je elke keer precies hetzelfde: een terugkerende analyse, je
+      vaste offerte, de voorbereiding van een gesprek, het maandrapport, de manier waarop
+      je een sessie uitwerkt. Dat zijn kandidaten om één keer vast te leggen in plaats van
+      elke keer opnieuw uit te leggen.</p>
+    <p class="tell">Ik heb je nu drie keer uitgelegd hoe mijn sessieverslagen eruit moeten
+      zien. Leg die werkwijze vast zodat ik er niet meer om hoef te vragen.</p>
+    <p>De vuistregel: <strong>heb je dezelfde uitleg drie keer getypt, dan is dat het
+      signaal.</strong> Niet één keer, en niet omdat het interessant lijkt. Een werkwijze
+      die je vooraf bedenkt beschrijft hoe je dénkt dat je werkt; eentje die uit herhaling
+      ontstaat, beschrijft hoe je het echt doet.</p>
+    <p class="step-note">De volgorde is dus: eerst echt werk doen, dan de herhaling
+      herkennen, en pas daarna vastleggen. Waar je zoiets vastlegt verschilt per omgeving:
+      voor de meeste mensen is dat gewoon een stuk tekst in de projectinstructies of een
+      bestand bij het Project. De losse skill-functie die je misschien voorbij hebt zien
+      komen, is niet in elk ChatGPT-abonnement beschikbaar. Kijk dus wat jouw account
+      heeft en gebruik anders gewoon je instructies; het effect is hetzelfde.</p>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <p class="label">Tot slot</p>
+      <h2>Ga aan het werk</h2>
+    </div>
+    <p>De methode is niet klaar als de twee bestanden er staan. Ze worden pas iets waard
+      doordat je ze bijhoudt terwijl je echt werk doet. Pak dus het ding dat je bij ronde
+      drie hebt opgeschreven, waar je elke week op vastloopt, en begin daarmee. Vandaag
+      nog, niet volgende week.</p>
+    <p class="switch">Toch met Claude aan de slag?
+      <button type="button" data-switch="claude">Bekijk de Claude-route</button></p>
+  </section>
+
+  </div><!-- /lane gpt -->
+
   <footer>
     <p>Twee bestanden en twee gewoontes. Meer zit er niet achter, ook niet bij mensen die
       er al een jaar mee werken. Wat groeit is niet het systeem, het is wat erin staat.</p>
-    <p>Claude Co-Work werkt op de betaalde abonnementen. Zonder abonnement werkt de
-      vragenlijst hierboven ook in een gewoon gesprek; je bewaart de twee bestanden dan
-      zelf.</p>
+    <p>Wat je zelf opschrijft is van jou. Het gaat mee naar elke tool die je later kiest,
+      en dat is precies waarom het in een bestand staat en niet in het hoofd van een
+      leverancier.</p>
   </footer>
 
 </div>
 
 <script>
   (function () {
-    var btn = document.getElementById('copyBtn');
-    var pre = document.getElementById('prompt');
-    btn.addEventListener('click', function () {
-      var text = pre.innerText;
-      var done = function () {
-        btn.textContent = 'Gekopieerd';
-        btn.setAttribute('data-done', '1');
-        setTimeout(function () {
-          btn.textContent = 'Kopieer';
-          btn.removeAttribute('data-done');
-        }, 2200);
-      };
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(text).then(done, fallback);
-      } else {
-        fallback();
+    // --- kopieerknoppen ---
+    function wireCopy(btnId, preId) {
+      var btn = document.getElementById(btnId);
+      var pre = document.getElementById(preId);
+      if (!btn || !pre) return;
+      btn.addEventListener('click', function () {
+        var text = pre.innerText;
+        var done = function () {
+          btn.textContent = 'Gekopieerd';
+          btn.setAttribute('data-done', '1');
+          setTimeout(function () {
+            btn.textContent = 'Kopieer';
+            btn.removeAttribute('data-done');
+          }, 2200);
+        };
+        function fallback() {
+          var sel = window.getSelection();
+          var range = document.createRange();
+          range.selectNodeContents(pre);
+          sel.removeAllRanges();
+          sel.addRange(range);
+          try { document.execCommand('copy'); done(); } catch (e) { /* selectie staat klaar */ }
+        }
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(done, fallback);
+        } else {
+          fallback();
+        }
+      });
+    }
+    wireCopy('copyBtn', 'prompt');
+    wireCopy('copyBtnGpt', 'promptGpt');
+    wireCopy('copyBtnAgenda', 'promptAgenda');
+
+    // --- toolkeuze ---
+    var laneClaude = document.getElementById('lane-claude');
+    var laneGpt = document.getElementById('lane-gpt');
+    var btnClaude = document.getElementById('pickClaude');
+    var btnGpt = document.getElementById('pickGpt');
+    var hint = document.getElementById('pickHint');
+
+    function choose(which, scroll) {
+      var isClaude = which === 'claude';
+      laneClaude.hidden = !isClaude;
+      laneGpt.hidden = isClaude;
+      btnClaude.setAttribute('aria-pressed', isClaude ? 'true' : 'false');
+      btnGpt.setAttribute('aria-pressed', isClaude ? 'false' : 'true');
+      if (hint) hint.hidden = true;
+      try { localStorage.setItem('cofounder-tool', which); } catch (e) { /* prima */ }
+      if (scroll) {
+        var target = isClaude ? laneClaude : laneGpt;
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
-      function fallback() {
-        var sel = window.getSelection();
-        var range = document.createRange();
-        range.selectNodeContents(pre);
-        sel.removeAllRanges();
-        sel.addRange(range);
-        try { document.execCommand('copy'); done(); } catch (e) { /* selectie staat klaar */ }
-      }
+    }
+
+    btnClaude.addEventListener('click', function () { choose('claude', true); });
+    btnGpt.addEventListener('click', function () { choose('gpt', true); });
+
+    Array.prototype.forEach.call(document.querySelectorAll('[data-switch]'), function (b) {
+      b.addEventListener('click', function () { choose(b.getAttribute('data-switch'), true); });
     });
+
+    var saved = null;
+    try { saved = localStorage.getItem('cofounder-tool'); } catch (e) { /* prima */ }
+    if (saved === 'claude' || saved === 'gpt') choose(saved, false);
   })();
 </script>
 </body>
