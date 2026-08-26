@@ -1,0 +1,798 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Zet in vijf minuten je eigen CLAUDE.md en geheugen.md op. Handout bij de sessie van 27 augustus 2026.">
+<meta name="robots" content="noindex">
+<meta property="og:title" content="Co-founder in een map">
+<meta property="og:description" content="Zet in vijf minuten vast wie je bent en hoe je wilt dat er met je gewerkt wordt.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚲</text></svg>">
+<style>
+  *,*::before,*::after{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body,h1,h2,h3,p,ol,ul,figure,pre{margin:0}
+  ol,ul{padding:0;list-style:none}
+  img,svg{display:block;max-width:100%}
+  button{font:inherit;color:inherit}
+  details summary::-webkit-details-marker{display:none}
+</style>
+<title>Co-founder in een map</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=JetBrains+Mono:wght@400;500&display=swap">
+</head>
+<body>
+<style>
+  :root {
+    --paper: #F2F4F1;
+    --card: #FFFFFF;
+    --ink: #16201B;
+    --ink-soft: #4E5C55;
+    --ink-faint: #7C8A83;
+    --rule: #D8DED9;
+    --route: #0E7A52;
+    --route-soft: #E2EFE8;
+    --clay: #B4462C;
+    --clay-soft: #F6E7E2;
+    --btn-text: #FFFFFF;
+    --shadow: 0 1px 2px rgba(22, 32, 27, .05), 0 8px 24px -12px rgba(22, 32, 27, .18);
+
+    --display: "Familjen Grotesk", "Helvetica Neue", Arial, sans-serif;
+    --body: "Source Serif 4", Georgia, "Times New Roman", serif;
+    --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #0F1613;
+      --card: #17211C;
+      --ink: #E8EDE9;
+      --ink-soft: #A6B3AC;
+      --ink-faint: #78857E;
+      --rule: #27332C;
+      --route: #4FBE8B;
+      --route-soft: #14291F;
+      --clay: #E2836A;
+      --clay-soft: #2A1B16;
+      --btn-text: #0B1310;
+      --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 8px 24px -12px rgba(0, 0, 0, .7);
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --paper: #0F1613;
+    --card: #17211C;
+    --ink: #E8EDE9;
+    --ink-soft: #A6B3AC;
+    --ink-faint: #78857E;
+    --rule: #27332C;
+    --route: #4FBE8B;
+    --route-soft: #14291F;
+    --clay: #E2836A;
+    --clay-soft: #2A1B16;
+    --btn-text: #0B1310;
+      --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 8px 24px -12px rgba(0, 0, 0, .7);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 1.0625rem;
+    line-height: 1.62;
+    margin: 0;
+    padding: 0 1.25rem 6rem;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: 40rem;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 3.5rem;
+  }
+
+  h1, h2, h3, .label, .node-num, .btn, .pill {
+    font-family: var(--display);
+  }
+
+  .label {
+    font-size: .6875rem;
+    font-weight: 600;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin: 0;
+  }
+
+  /* ---------- hero ---------- */
+
+  header {
+    padding-top: 4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  h1 {
+    font-size: clamp(2.1rem, 7vw, 3.1rem);
+    line-height: 1.04;
+    font-weight: 700;
+    letter-spacing: -.022em;
+    margin: 0;
+    text-wrap: balance;
+  }
+
+  .thesis {
+    font-size: 1.1875rem;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    margin: 0;
+    border-left: 2px solid var(--route);
+    padding-left: 1.125rem;
+    text-wrap: pretty;
+  }
+
+  .thesis strong { color: var(--ink); font-weight: 600; }
+
+  /* ---------- sections ---------- */
+
+  section {
+    display: flex;
+    flex-direction: column;
+    gap: 1.125rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: -.014em;
+    line-height: 1.2;
+    margin: 0;
+    text-wrap: balance;
+  }
+
+  h3 {
+    font-size: 1.0625rem;
+    font-weight: 600;
+    margin: 0;
+    letter-spacing: -.005em;
+  }
+
+  p { margin: 0; text-wrap: pretty; }
+
+  a { color: var(--route); text-decoration-thickness: 1px; text-underline-offset: .16em; }
+
+  :focus-visible {
+    outline: 2px solid var(--route);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  .sec-head {
+    display: flex;
+    flex-direction: column;
+    gap: .4rem;
+    padding-bottom: .25rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  /* ---------- steps ---------- */
+
+  ol.steps {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    counter-reset: step;
+  }
+
+  ol.steps > li {
+    counter-increment: step;
+    position: relative;
+    padding-left: 2.625rem;
+    min-height: 1.75rem;
+  }
+
+  ol.steps > li::before {
+    content: counter(step);
+    position: absolute;
+    left: 0;
+    top: .05rem;
+    font-family: var(--display);
+    font-size: .8125rem;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    color: var(--route);
+    background: var(--route-soft);
+    width: 1.75rem;
+    height: 1.75rem;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+  }
+
+  /* ---------- route / ladder ---------- */
+
+  .route {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .stop {
+    display: grid;
+    grid-template-columns: 3rem 1fr;
+    gap: 1.25rem;
+  }
+
+  .marker {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .375rem;
+  }
+
+  .node-num {
+    width: 2.625rem;
+    height: 2.625rem;
+    border-radius: 50%;
+    border: 2px solid var(--route);
+    color: var(--route);
+    background: var(--card);
+    display: grid;
+    place-items: center;
+    font-size: 1.0625rem;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    flex: none;
+  }
+
+  .line {
+    flex: 1;
+    width: 2px;
+    background: repeating-linear-gradient(var(--rule) 0 5px, transparent 5px 11px);
+    min-height: 1rem;
+  }
+
+  .stop-body {
+    padding-bottom: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: .625rem;
+  }
+
+  .stop:last-child .stop-body { padding-bottom: 0; }
+
+  .when {
+    font-family: var(--display);
+    font-size: .75rem;
+    font-weight: 600;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+
+  .tell {
+    background: var(--route-soft);
+    color: var(--ink);
+    border-radius: .5rem;
+    padding: .75rem .9375rem;
+    font-family: var(--mono);
+    font-size: .8125rem;
+    line-height: 1.5;
+  }
+
+  /* ---------- start routes ---------- */
+
+  .start-routes {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: .75rem;
+    align-items: start;
+  }
+
+  .start-card {
+    background: var(--card);
+    border: 1px solid var(--rule);
+    border-radius: .625rem;
+  }
+
+  .start-card[open] {
+    grid-column: 1 / -1;
+    border-color: var(--route);
+  }
+
+  .start-card summary {
+    list-style: none;
+    cursor: pointer;
+    padding: .875rem 1rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-areas: "main chev" "sub chev";
+    align-items: center;
+    column-gap: .75rem;
+    row-gap: .1rem;
+  }
+
+  .start-card summary::-webkit-details-marker { display: none; }
+
+  .sum-main {
+    grid-area: main;
+    font-family: var(--display);
+    font-size: .9375rem;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+
+  .sum-key {
+    color: var(--route);
+    letter-spacing: .01em;
+  }
+
+  .sum-sub {
+    grid-area: sub;
+    font-size: .8125rem;
+    line-height: 1.35;
+    color: var(--ink-faint);
+  }
+
+  .chev {
+    grid-area: chev;
+    width: .5rem;
+    height: .5rem;
+    border-right: 2px solid var(--route);
+    border-bottom: 2px solid var(--route);
+    transform: rotate(45deg) translate(-2px, -2px);
+    transition: transform .18s ease;
+  }
+
+  .start-card[open] .chev { transform: rotate(-135deg) translate(-2px, -2px); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .chev { transition: none; }
+  }
+
+  .start-card > .steps,
+  .start-card > .outcome {
+    margin: 0 1.25rem;
+  }
+
+  .start-card > .steps { padding-top: .25rem; }
+  .start-card > .outcome { margin-bottom: 1.25rem; margin-top: 1rem; }
+
+  .start-card .steps > li { font-size: .9375rem; line-height: 1.55; }
+
+  @media (max-width: 30rem) {
+    .start-routes { grid-template-columns: minmax(0, 1fr); }
+  }
+
+  .outcome {
+    font-size: .9375rem;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    border-top: 1px solid var(--rule);
+    padding-top: .75rem;
+  }
+
+  .tt {
+    font-family: var(--mono);
+    font-size: .875em;
+    color: var(--ink);
+  }
+
+  /* ---------- copy block ---------- */
+
+  .copy-card {
+    background: var(--card);
+    border: 1px solid var(--rule);
+    border-radius: .75rem;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+
+  .copy-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: .75rem .9375rem .75rem 1.125rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .copy-head .label { color: var(--ink-soft); }
+
+  .btn {
+    font-size: .8125rem;
+    font-weight: 600;
+    border: 1px solid var(--route);
+    background: var(--route);
+    color: var(--btn-text);
+    padding: .4rem .8rem;
+    border-radius: .375rem;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+
+  .btn:hover { filter: brightness(1.08); }
+  .btn[data-done="1"] { background: transparent; color: var(--route); }
+
+  pre {
+    margin: 0;
+    padding: 1.125rem;
+    overflow-x: auto;
+    font-family: var(--mono);
+    font-size: .78125rem;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    max-height: 21rem;
+    overflow-y: auto;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+  }
+
+  /* ---------- files ---------- */
+
+  .files {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .file {
+    background: var(--card);
+    border: 1px solid var(--rule);
+    border-radius: .75rem;
+    padding: 1.125rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+  }
+
+  .fname {
+    font-family: var(--mono);
+    font-size: .875rem;
+    font-weight: 500;
+    color: var(--route);
+  }
+
+  .file p { font-size: .9375rem; color: var(--ink-soft); }
+
+  /* ---------- note ---------- */
+
+  .note {
+    background: var(--clay-soft);
+    border-radius: .625rem;
+    padding: 1rem 1.125rem;
+    font-size: .9375rem;
+    line-height: 1.55;
+    color: var(--ink);
+    display: flex;
+    flex-direction: column;
+    gap: .4rem;
+  }
+
+  .note .label { color: var(--clay); }
+
+  footer {
+    border-top: 1px solid var(--rule);
+    padding-top: 1.5rem;
+    font-size: .875rem;
+    color: var(--ink-faint);
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+  }
+
+  @media (max-width: 30rem) {
+    .stop { grid-template-columns: 2.25rem 1fr; gap: .875rem; }
+    .node-num { width: 2.25rem; height: 2.25rem; font-size: .9375rem; }
+    header { padding-top: 2.5rem; }
+    .wrap { gap: 2.75rem; }
+  }
+</style>
+
+<div class="wrap">
+
+  <header>
+    <p class="label">Facilitator Summit &middot; 27 augustus 2026</p>
+    <h1>Co-founder in een map</h1>
+    <p class="thesis">Een tool voert uit wat je vraagt. Een co-founder weet wie je bent.
+      <strong>Het verschil is niet het model, het is de context die jij eenmalig opschrijft.</strong></p>
+    <p>Hieronder zet je in vijf minuten vast wie je bent en hoe je wilt dat er met je
+      gewerkt wordt. Dat komt in een bestand dat vanaf dat moment elk gesprek meegaat,
+      zodat je nooit meer bij nul begint.</p>
+    <p>Heb je in de zaal die vijf regels opgeschreven, hou ze erbij: dat zijn precies de
+      antwoorden waar de vragenlijst hieronder om vraagt. Kwam je er niet aan toe, ook
+      prima. Deze pagina staat op zichzelf en je hebt er niets van de sessie voor nodig.</p>
+  </header>
+
+  <section>
+    <div class="sec-head">
+      <p class="label">Beginnen</p>
+      <h2>Plak dit in Claude</h2>
+    </div>
+    <p>Twee routes naar hetzelfde resultaat. Kies de bovenste als je Claude Co-Work
+      hebt, anders de onderste. Beide gebruiken hetzelfde blok verderop.</p>
+
+    <div class="start-routes">
+
+      <details class="start-card">
+        <summary>
+          <span class="sum-main"><span class="sum-key">Route A</span> met Claude Co-Work</span>
+          <span class="sum-sub">Claude schrijft de bestanden zelf</span>
+          <span class="chev" aria-hidden="true"></span>
+        </summary>
+        <ol class="steps">
+          <li>Maak een lege map op je laptop. Naam maakt niet uit, bijvoorbeeld
+            <span class="tt">mijn-hq</span>.</li>
+          <li>Open de Claude desktop-app en kies in het invoerveld voor
+            <strong>Co-Work</strong>. Dat is de stand waarin Claude niet alleen praat
+            maar ook in je bestanden mag werken.</li>
+          <li>Klik op <strong>map toevoegen</strong> en kies die lege map. Je ziet de
+            mapnaam in beeld verschijnen zodra het gelukt is.</li>
+          <li>Plak het blok hieronder en beantwoord de vragen.</li>
+        </ol>
+        <p class="outcome">Aan het eind staan <span class="tt">CLAUDE.md</span> en
+          <span class="tt">geheugen.md</span> in je map. Claude vraagt onderweg
+          toestemming om ze te maken; zeg ja, dat is de bedoeling.</p>
+      </details>
+
+      <details class="start-card">
+        <summary>
+          <span class="sum-main"><span class="sum-key">Route B</span> in Claude Chat</span>
+          <span class="sum-sub">Je bewaart de bestanden zelf</span>
+          <span class="chev" aria-hidden="true"></span>
+        </summary>
+        <ol class="steps">
+          <li>Open Claude in je browser of in de app en begin een nieuw gesprek. Een map
+            koppelen hoeft niet.</li>
+          <li>Plak het blok hieronder en beantwoord de vragen.</li>
+          <li>Claude zet de twee bestanden aan het eind in beeld. Kopieer ze naar twee
+            tekstbestanden op je laptop, met precies de namen
+            <span class="tt">CLAUDE.md</span> en <span class="tt">geheugen.md</span>.</li>
+        </ol>
+        <p class="outcome">Zet je die twee bestanden later alsnog in een map die je
+          koppelt, dan werkt het vanaf dat moment als route A. Je hoeft niets opnieuw
+          te doen.</p>
+      </details>
+
+    </div>
+
+    <p>Hoe dan ook krijg je acht korte vragen, de meeste met knoppen. Reken op vijf
+      minuten.</p>
+
+    <div class="copy-card">
+      <div class="copy-head">
+        <p class="label">De vragenlijst</p>
+        <button class="btn" id="copyBtn" type="button">Kopieer</button>
+      </div>
+      <pre id="prompt">Je gaat mij helpen een CLAUDE.md en een geheugen.md te schrijven, zodat je vanaf nu weet wie ik ben. Stel me de vragen hieronder in vier rondes. Gebruik knoppen als je die hebt; anders nummer je de opties. Nooit meer dan twee vragen tegelijk. Vraag eerst hoe je mij mag aanspreken en gebruik die aanspreekvorm daarna.
+
+RONDE 1
+1. Wat voor werk doe je?
+   - Zelfstandig: advies, coaching, facilitatie of dienstverlening
+   - Ik heb een bedrijf met mensen in dienst
+   - In loondienst, en daarnaast een eigen onderneming
+   - Nog aan het beginnen, de vorm staat nog niet vast
+2. Waar wil je dat ik je vooral bij help? (meerdere mogelijk)
+   - Meedenken en mijn denken scherp krijgen
+   - Schrijven: mails, voorstellen, teksten
+   - Uitzoeken en analyses
+   - Regelwerk: agenda, administratie, opvolging
+Vraag daarna open: "En voor wie doe je dat werk?" en "Waar heb je juist geen hulp bij nodig?"
+
+RONDE 2
+3. Hoe wil je dat ik met je praat?
+   - Kort en direct, kom ter zake
+   - Kort, maar leg uit waarom je iets vindt
+   - Stel eerst vragen voordat je met een antwoord komt
+   - Uitgebreid, ik lees graag mee met je redenering
+4. Wat wil je niet van me? (meerdere mogelijk)
+   - Geen complimenten vooraf, begin bij de inhoud
+   - Niet meegaan als ik iets onlogisch of tegenstrijdigs zeg
+   - Niet gokken, zeg het als je iets niet weet
+   - Niet meteen doen, eerst even overleggen
+Vraag daarna open: "Wat irriteert je het meest aan hoe AI meestal antwoordt?"
+
+RONDE 3 (open vraag, geen knoppen)
+5. Waar loopt het bij mij elke week op vast? Het werk dat blijft liggen, of het ding waar ik telkens op stukloop.
+Blijft mijn antwoord vaag, vraag dan een keer door naar een voorbeeld van deze week. Noem ik meerdere dingen, vraag dan welke deze week de meeste last geeft.
+
+RONDE 4
+6. Wat mag je nooit doen zonder dat ik het eerst gezien heb? (meerdere mogelijk)
+   - Iets versturen namens mij
+   - Bestaande bestanden aanpassen of weggooien
+   - Iets publiceren of naar buiten brengen
+   - Geld uitgeven of iets bestellen
+
+DAARNA schrijf je twee bestanden.
+
+CLAUDE.md met deze kopjes: Wie ik ben / Wat ik van je verwacht / Hoe je met me praat / Waar ik elke week op vastloop / Wat je niet van me hoeft / Wat je nooit doet zonder mijn akkoord / Geheugen.
+Regels: schrijf in de ik-vorm alsof ik het zelf heb opgeschreven. Gebruik mijn eigen woorden, vooral bij vraag 5. Elk blok bevat minstens een zin van mij; een blok dat alleen uit overgeplakte knopteksten bestaat is een formulierregel en geen antwoord. Verzin niets bij. Hou het onder een pagina. Zet onder Geheugen deze afspraak: lees geheugen.md aan het begin van een gesprek dat ergens over gaat, en sluit elk gesprek af met wat we vastleggen en wat de eerstvolgende stap is.
+
+geheugen.md met deze kopjes: Waar ik nu aan werk (max 3) / Besloten (tabel: datum, wat is besloten, wanneer kijken we hier opnieuw naar) / Speelt nog / Eerstvolgende stap.
+Zet het ding uit vraag 5 met de meeste last als eerste punt onder "Waar ik nu aan werk". De rest van vraag 5 gaat onder "Speelt nog". Laat de tabel leeg.
+
+Kun je geen bestanden wegschrijven omdat er geen map gekoppeld is, zet de volledige inhoud van beide bestanden dan in beeld zodat ik ze zelf kan opslaan. Zeg er ook bij onder welke twee namen ze moeten worden bewaard.
+
+Bestaat een van beide bestanden al, overschrijf niets: laat zien wat je zou toevoegen en vraag of dat mag.
+
+TOT SLOT zeg je in een zin per bestand wat het doet, en dat CLAUDE.md een gewoon tekstbestand is dat ik zelf mag aanpassen: dit is versie 1, niet het eindpunt. Daarna stel je een laatste vraag met knoppen en wacht je af, je begint nergens uit jezelf aan:
+   Wat wil je nu doen?
+   - Aan de slag met [het ding uit vraag 5, in mijn eigen woorden]
+   - Mijn agenda of mail koppelen
+   - Eerst uitleg over hoe dit werkt
+   - Niets nu, ik ga zelf verder
+
+Vul de eerste knop concreet in, dus niet "je openstaande punt" maar bijvoorbeeld "de offertes die blijven liggen". Hou hem kort, ongeveer zestig tekens, anders wordt hij afgekapt. Alle vier de knoppen in de ik-vorm.
+
+Wat je per keuze doet:
+
+1. De taak: behandel het als echt werk en niet als demonstratie. Paste mijn hele klacht niet op de knop, breng het weggevallen deel dan terug in je eerste zin. Vraag daarna naar het concrete geval van deze week en pak dat op. Sluit de tak af met wat er in geheugen.md moet.
+
+2. Koppelen: dit kun je niet voor mij aanzetten, dus leg het uit. Een connector is een koppeling waarmee je mijn agenda, mail of bestanden mag lezen in plaats van dat ik het je vertel. Aanzetten gaat meestal via het plusje in het invoerveld of via Instellingen bij Connectors, maar beloof niet wat er op mijn scherm staat: de plek verschilt per versie en per apparaat, en bij een zakelijk account kan een beheerder connectors hebben uitgezet. Vraag wat ik zie en werk van daaruit. Begin bij de agenda, dat is de makkelijkste eerste koppeling en de minst gevoelige inhoud. Bij mail is een ding verplicht: wijs op de afspraak over versturen die net in mijn CLAUDE.md is gezet, en zeg erbij dat dat een afspraak is en geen slot op de deur, want wat een koppeling echt mag staat in de rechten van die koppeling zelf. Geef daarna een bruikbare vraag mee in plaats van een opsomming, bijvoorbeeld: kijk naar mijn agenda van deze week en naar geheugen.md, waar gaat het knellen en wat zou ik nu moeten inplannen dat er niet staat? Is het gelukt, bied dan aan die vraag meteen samen te draaien. Sluit de tak af met wat er in geheugen.md moet.
+
+3. Uitleg: drie alinea's plus een afsluitende vraag, in gewone taal, geen college. Waarom een bestand beter werkt dan het elke keer opnieuw vertellen, namelijk dat de context er al staat voordat het gesprek begint; wat Co-Work toevoegt boven een gewoon gesprek, namelijk dat je daar in mijn bestanden mag werken, dus het onthoudt niet alleen maar legt ook vast; en wat een skill is, een instructie die je een keer vastlegt voor werk dat je vaker precies hetzelfde doet, te maken zodra je dezelfde uitleg drie keer hebt getypt. Sluit deze tak nooit open af: de afsluitende vraag is dezelfde als de slotvraag, zonder deze optie en met dezelfde ik-vorm, dus aan de slag met de taak, mijn agenda of mail koppelen, of niets nu.
+
+4. Niets nu: twee zinnen en dan stoppen. Eerst wat er de volgende keer moet gebeuren, namelijk dat ik gewoon kan beginnen zonder iets te herhalen. Daarna de afsluitzin hieronder.
+
+Zeg aan het eind van keuze 1, 2 of 4 een keer hardop, en niet vaker, dat een gesprek afsluiten met "leg vast wat we hebben besloten en wat de volgende stap is" het bestand geheugen.md bijwerkt. Doe dat ook al staat die afspraak al in CLAUDE.md. Bij keuze 3 niet, tenzij ik daarna alsnog voor "niets nu" kies.
+
+Kom buiten de slotvraag niet uit jezelf over koppelingen of skills beginnen; aanbieden doe je alleen daar, uitleggen mag in keuze 3.</pre>
+    </div>
+
+    <div class="note">
+      <p class="label">Als er niets gebeurt</p>
+      <p>Schrijft Claude bij route A geen bestanden, dan staat hij waarschijnlijk niet in
+        Co-Work of is er geen map gekoppeld. Vraag dan gewoon: <em>zet de twee bestanden
+        hier in beeld</em>, en ga verder volgens route B. Je bent niets kwijt.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <p class="label">Wat je nu hebt</p>
+      <h2>Twee bestanden, meer is het niet</h2>
+    </div>
+    <div class="files">
+      <div class="file">
+        <p class="fname">CLAUDE.md</p>
+        <h3>Wie je bent</h3>
+        <p>Wordt automatisch gelezen zodra je map open staat. Verandert bijna nooit.
+          Dit is het bestand dat maakt dat je niet meer hoeft uit te leggen wie je bent.</p>
+      </div>
+      <div class="file">
+        <p class="fname">geheugen.md</p>
+        <h3>Wat er speelt</h3>
+        <p>Wat je hebt besloten en waarom, en wat de volgende stap is. Verandert elke week.
+          Dit is het bestand dat maakt dat je maandag niet opnieuw begint.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <p class="label">Daarna</p>
+      <h2>De route</h2>
+    </div>
+    <p>Vier haltes. Ga pas naar de volgende als de vorige een week heeft gedraaid. Wie ze
+      alle vier tegelijk doet, heeft over twee weken een prachtige map die hij niet meer
+      opent.</p>
+
+    <ol class="route">
+
+      <li class="stop">
+        <div class="marker"><div class="node-num">1</div><div class="line"></div></div>
+        <div class="stop-body">
+          <p class="when">Vandaag &middot; 5 minuten</p>
+          <h3>De grondwet</h3>
+          <p>Je CLAUDE.md staat er. Klaar. De gewoonte voor deze week: elke keer dat je
+            jezelf hoort herhalen, zet je die zin erin. Na een week is het bestand twee
+            keer zo goed en heb je er tien minuten aan besteed.</p>
+        </div>
+      </li>
+
+      <li class="stop">
+        <div class="marker"><div class="node-num">2</div><div class="line"></div></div>
+        <div class="stop-body">
+          <p class="when">Week 1</p>
+          <h3>Het geheugen</h3>
+          <p>Sluit elk gesprek dat ergens over ging af met één zin:</p>
+          <p class="tell">Leg vast wat we hebben besloten en wat de volgende stap is.</p>
+          <p>Meer niet, het bestand vult zichzelf. Dit is de halte die de meeste mensen
+            overslaan, en het is precies het verschil tussen een tool en een co-founder:
+            niet dat de een slimmer is, maar dat de ander weet wat je vorige week hebt
+            besloten en waarom.</p>
+        </div>
+      </li>
+
+      <li class="stop">
+        <div class="marker"><div class="node-num">3</div><div class="line"></div></div>
+        <div class="stop-body">
+          <p class="when">Week 2</p>
+          <h3>Je agenda erbij</h3>
+          <p>Een connector, oftewel een koppeling met je agenda, mail of bestanden, laat
+            hem zien wat er speelt in plaats van het te vragen. Je zet hem aan via het
+            plusje in het invoerveld. Begin met de agenda, die is het minst gevoelig en
+            direct nuttig.</p>
+          <p>Gebruik hem niet om je week te laten samenvatten. Gebruik hem op één vast
+            moment, bijvoorbeeld maandagochtend:</p>
+          <p class="tell">Kijk naar mijn agenda van deze week en naar geheugen.md. Waar
+            gaat het knellen, en wat zou ik nu moeten inplannen dat er niet staat?</p>
+          <p>Koppel je mail pas als in je CLAUDE.md staat dat er nooit iets verstuurd wordt
+            zonder jouw akkoord. Concepten klaarzetten is nuttig, verzenden is een deur
+            die maar één kant op gaat.</p>
+        </div>
+      </li>
+
+      <li class="stop">
+        <div class="marker"><div class="node-num">4</div></div>
+        <div class="stop-body">
+          <p class="when">Als het knelt, niet eerder</p>
+          <h3>Een skill</h3>
+          <p>Een skill is een instructie die je één keer vastlegt voor werk dat je vaker
+            precies hetzelfde doet: hoe jouw offerte eruitziet, hoe je een sessieverslag
+            opbouwt. Het signaal om te beginnen is dat je dezelfde uitleg drie keer hebt
+            getypt. Niet één keer, en niet omdat het interessant lijkt.</p>
+          <p class="tell">Ik heb je nu drie keer uitgelegd hoe mijn sessieverslagen eruit
+            moeten zien. Maak daar een skill van.</p>
+          <p>Waarom niet eerder: een skill die je vooraf bedenkt beschrijft hoe je dénkt
+            dat je werkt. Een skill die uit herhaling ontstaat, beschrijft hoe je het echt
+            doet.</p>
+        </div>
+      </li>
+
+    </ol>
+  </section>
+
+  <footer>
+    <p>Twee bestanden en twee gewoontes. Meer zit er niet achter, ook niet bij mensen die
+      er al een jaar mee werken. Wat groeit is niet het systeem, het is wat erin staat.</p>
+    <p>Claude Co-Work werkt op de betaalde abonnementen. Zonder abonnement werkt de
+      vragenlijst hierboven ook in een gewoon gesprek; je bewaart de twee bestanden dan
+      zelf.</p>
+  </footer>
+
+</div>
+
+<script>
+  (function () {
+    var btn = document.getElementById('copyBtn');
+    var pre = document.getElementById('prompt');
+    btn.addEventListener('click', function () {
+      var text = pre.innerText;
+      var done = function () {
+        btn.textContent = 'Gekopieerd';
+        btn.setAttribute('data-done', '1');
+        setTimeout(function () {
+          btn.textContent = 'Kopieer';
+          btn.removeAttribute('data-done');
+        }, 2200);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(done, fallback);
+      } else {
+        fallback();
+      }
+      function fallback() {
+        var sel = window.getSelection();
+        var range = document.createRange();
+        range.selectNodeContents(pre);
+        sel.removeAllRanges();
+        sel.addRange(range);
+        try { document.execCommand('copy'); done(); } catch (e) { /* selectie staat klaar */ }
+      }
+    });
+  })();
+</script>
+</body>
+</html>
