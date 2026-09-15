@@ -1,0 +1,1310 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Kick-off Out of Office, 15 september 2026. Van negen wensen naar één werkende basis.">
+<meta name="robots" content="noindex, nofollow">
+<meta property="og:title" content="Out of Office: van negen wensen naar één basis">
+<meta property="og:description" content="Werkpagina bij de drie uur begeleiding. Prompts, stappen en afspraken.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌲</text></svg>">
+<style>
+  *,*::before,*::after{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body,h1,h2,h3,p,ol,ul,figure,pre{margin:0}
+  ol,ul{padding:0;list-style:none}
+  img,svg{display:block;max-width:100%}
+  button{font:inherit;color:inherit}
+  details summary::-webkit-details-marker{display:none}
+</style>
+<title>Out of Office: van negen wensen naar één basis</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=JetBrains+Mono:wght@400;500&display=swap">
+</head>
+<body>
+<style>
+  :root {
+    --paper: #F2F4F1;
+    --card: #FFFFFF;
+    --ink: #16201B;
+    --ink-soft: #4E5C55;
+    --ink-faint: #7C8A83;
+    --rule: #D8DED9;
+    --route: #0E7A52;
+    --route-soft: #E2EFE8;
+    --clay: #B4462C;
+    --clay-soft: #F6E7E2;
+    --btn-text: #FFFFFF;
+    --shadow: 0 1px 2px rgba(22, 32, 27, .05), 0 8px 24px -12px rgba(22, 32, 27, .18);
+
+    --display: "Familjen Grotesk", "Helvetica Neue", Arial, sans-serif;
+    --body: "Source Serif 4", Georgia, "Times New Roman", serif;
+    --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #0F1613;
+      --card: #17211C;
+      --ink: #E8EDE9;
+      --ink-soft: #A6B3AC;
+      --ink-faint: #78857E;
+      --rule: #27332C;
+      --route: #4FBE8B;
+      --route-soft: #14291F;
+      --clay: #E2836A;
+      --clay-soft: #2A1B16;
+      --btn-text: #0B1310;
+      --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 8px 24px -12px rgba(0, 0, 0, .7);
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --paper: #0F1613;
+    --card: #17211C;
+    --ink: #E8EDE9;
+    --ink-soft: #A6B3AC;
+    --ink-faint: #78857E;
+    --rule: #27332C;
+    --route: #4FBE8B;
+    --route-soft: #14291F;
+    --clay: #E2836A;
+    --clay-soft: #2A1B16;
+    --btn-text: #0B1310;
+      --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 8px 24px -12px rgba(0, 0, 0, .7);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 1.0625rem;
+    line-height: 1.62;
+    margin: 0;
+    padding: 0 1.25rem 6rem;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: 40rem;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 3.5rem;
+  }
+
+  h1, h2, h3, .label, .node-num, .btn, .pill {
+    font-family: var(--display);
+  }
+
+  .label {
+    font-size: .6875rem;
+    font-weight: 600;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin: 0;
+  }
+
+  /* ---------- hero ---------- */
+
+  header {
+    padding-top: 4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  h1 {
+    font-size: clamp(2.1rem, 7vw, 3.1rem);
+    line-height: 1.04;
+    font-weight: 700;
+    letter-spacing: -.022em;
+    margin: 0;
+    text-wrap: balance;
+  }
+
+  .thesis {
+    font-size: 1.1875rem;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    margin: 0;
+    border-left: 2px solid var(--route);
+    padding-left: 1.125rem;
+    text-wrap: pretty;
+  }
+
+  .thesis strong { color: var(--ink); font-weight: 600; }
+
+  /* ---------- sections ---------- */
+
+  section {
+    display: flex;
+    flex-direction: column;
+    gap: 1.125rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: -.014em;
+    line-height: 1.2;
+    margin: 0;
+    text-wrap: balance;
+  }
+
+  h3 {
+    font-size: 1.0625rem;
+    font-weight: 600;
+    margin: 0;
+    letter-spacing: -.005em;
+  }
+
+  p { margin: 0; text-wrap: pretty; }
+
+  a { color: var(--route); text-decoration-thickness: 1px; text-underline-offset: .16em; }
+
+  :focus-visible {
+    outline: 2px solid var(--route);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  .sec-head {
+    display: flex;
+    flex-direction: column;
+    gap: .4rem;
+    padding-bottom: .25rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  /* ---------- steps ---------- */
+
+  ol.steps {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    counter-reset: step;
+  }
+
+  ol.steps > li {
+    counter-increment: step;
+    position: relative;
+    padding-left: 2.625rem;
+    min-height: 1.75rem;
+  }
+
+  ol.steps > li::before {
+    content: counter(step);
+    position: absolute;
+    left: 0;
+    top: .05rem;
+    font-family: var(--display);
+    font-size: .8125rem;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    color: var(--route);
+    background: var(--route-soft);
+    width: 1.75rem;
+    height: 1.75rem;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+  }
+
+  /* ---------- route / ladder ---------- */
+
+  .route {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .stop {
+    display: grid;
+    grid-template-columns: 3rem 1fr;
+    gap: 1.25rem;
+  }
+
+  .marker {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .375rem;
+  }
+
+  .node-num {
+    width: 2.625rem;
+    height: 2.625rem;
+    border-radius: 50%;
+    border: 2px solid var(--route);
+    color: var(--route);
+    background: var(--card);
+    display: grid;
+    place-items: center;
+    font-size: 1.0625rem;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    flex: none;
+  }
+
+  .line {
+    flex: 1;
+    width: 2px;
+    background: repeating-linear-gradient(var(--rule) 0 5px, transparent 5px 11px);
+    min-height: 1rem;
+  }
+
+  .stop-body {
+    padding-bottom: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: .625rem;
+  }
+
+  .stop:last-child .stop-body { padding-bottom: 0; }
+
+  .when {
+    font-family: var(--display);
+    font-size: .75rem;
+    font-weight: 600;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+
+  .tell {
+    background: var(--route-soft);
+    color: var(--ink);
+    border-radius: .5rem;
+    padding: .75rem .9375rem;
+    font-family: var(--mono);
+    font-size: .8125rem;
+    line-height: 1.5;
+  }
+
+  /* ---------- start routes ---------- */
+
+  .start-routes {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: .75rem;
+    align-items: start;
+  }
+
+  .start-card {
+    background: var(--card);
+    border: 1px solid var(--rule);
+    border-radius: .625rem;
+  }
+
+  .start-card[open] {
+    grid-column: 1 / -1;
+    border-color: var(--route);
+  }
+
+  .start-card summary {
+    list-style: none;
+    cursor: pointer;
+    padding: .875rem 1rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-areas: "main chev" "sub chev";
+    align-items: center;
+    column-gap: .75rem;
+    row-gap: .1rem;
+  }
+
+  .start-card summary::-webkit-details-marker { display: none; }
+
+  .sum-main {
+    grid-area: main;
+    font-family: var(--display);
+    font-size: .9375rem;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+
+  .sum-key {
+    color: var(--route);
+    letter-spacing: .01em;
+  }
+
+  .sum-sub {
+    grid-area: sub;
+    font-size: .8125rem;
+    line-height: 1.35;
+    color: var(--ink-faint);
+  }
+
+  .chev {
+    grid-area: chev;
+    width: .5rem;
+    height: .5rem;
+    border-right: 2px solid var(--route);
+    border-bottom: 2px solid var(--route);
+    transform: rotate(45deg) translate(-2px, -2px);
+    transition: transform .18s ease;
+  }
+
+  .start-card[open] .chev { transform: rotate(-135deg) translate(-2px, -2px); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .chev { transition: none; }
+  }
+
+  .start-card > .steps,
+  .start-card > .outcome {
+    margin: 0 1.25rem;
+  }
+
+  .start-card > .steps { padding-top: .25rem; }
+  .start-card > .outcome { margin-bottom: 1.25rem; margin-top: 1rem; }
+
+  .start-card .steps > li { font-size: .9375rem; line-height: 1.55; }
+
+  @media (max-width: 30rem) {
+    .start-routes { grid-template-columns: minmax(0, 1fr); }
+  }
+
+  .outcome {
+    font-size: .9375rem;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    border-top: 1px solid var(--rule);
+    padding-top: .75rem;
+  }
+
+  .tt {
+    font-family: var(--mono);
+    font-size: .875em;
+    color: var(--ink);
+  }
+
+  /* ---------- copy block ---------- */
+
+  .copy-card {
+    background: var(--card);
+    border: 1px solid var(--rule);
+    border-radius: .75rem;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+
+  .copy-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: .75rem .9375rem .75rem 1.125rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .copy-head .label { color: var(--ink-soft); }
+
+  .btn {
+    font-size: .8125rem;
+    font-weight: 600;
+    border: 1px solid var(--route);
+    background: var(--route);
+    color: var(--btn-text);
+    padding: .4rem .8rem;
+    border-radius: .375rem;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+
+  .btn:hover { filter: brightness(1.08); }
+  .btn[data-done="1"] { background: transparent; color: var(--route); }
+
+  pre {
+    margin: 0;
+    padding: 1.125rem;
+    overflow-x: auto;
+    font-family: var(--mono);
+    font-size: .78125rem;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    max-height: 21rem;
+    overflow-y: auto;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+  }
+
+  /* ---------- files ---------- */
+
+  .files {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .file {
+    background: var(--card);
+    border: 1px solid var(--rule);
+    border-radius: .75rem;
+    padding: 1.125rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+  }
+
+  .fname {
+    font-family: var(--mono);
+    font-size: .875rem;
+    font-weight: 500;
+    color: var(--route);
+  }
+
+  .file p { font-size: .9375rem; color: var(--ink-soft); }
+
+  /* ---------- note ---------- */
+
+  .note {
+    background: var(--clay-soft);
+    border-radius: .625rem;
+    padding: 1rem 1.125rem;
+    font-size: .9375rem;
+    line-height: 1.55;
+    color: var(--ink);
+    display: flex;
+    flex-direction: column;
+    gap: .4rem;
+  }
+
+  .note .label { color: var(--clay); }
+
+  footer {
+    border-top: 1px solid var(--rule);
+    padding-top: 1.5rem;
+    font-size: .875rem;
+    color: var(--ink-faint);
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+  }
+
+  @media (max-width: 30rem) {
+    .stop { grid-template-columns: 2.25rem 1fr; gap: .875rem; }
+    .node-num { width: 2.25rem; height: 2.25rem; font-size: .9375rem; }
+    header { padding-top: 2.5rem; }
+    .wrap { gap: 2.75rem; }
+  }
+</style>
+<style>
+  /* ---------- aanvullingen voor deze pagina ---------- */
+  .areas { display: flex; flex-direction: column; gap: .625rem; }
+  .area {
+    background: var(--card);
+    border: 1px solid var(--rule);
+    border-radius: .75rem;
+    padding: .875rem 1rem;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: .75rem 1rem;
+    align-items: start;
+    box-shadow: var(--shadow);
+  }
+  .area h3 { font-size: 1rem; font-weight: 600; margin: 0 0 .15rem; }
+  .area p { font-size: .9375rem; color: var(--ink-soft); margin: 0; }
+  .area .kind {
+    display: inline-block;
+    font-family: var(--display);
+    font-size: .6875rem;
+    font-weight: 600;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: .35rem;
+  }
+  .sort { display: flex; gap: .25rem; flex-wrap: wrap; }
+  .sort button {
+    font-family: var(--display);
+    font-size: .75rem;
+    font-weight: 600;
+    padding: .3rem .6rem;
+    border-radius: 999px;
+    border: 1px solid var(--rule);
+    background: transparent;
+    cursor: pointer;
+    color: var(--ink-soft);
+  }
+  .sort button[aria-pressed="true"] { background: var(--route); border-color: var(--route); color: var(--btn-text); }
+  .sort button[data-v="later"][aria-pressed="true"] { background: #D98A1E; border-color: #D98A1E; color: #FFFFFF; }
+  .sort button[data-v="niet"][aria-pressed="true"] { background: var(--clay); border-color: var(--clay); }
+  @media (max-width: 30rem) { .area { grid-template-columns: minmax(0, 1fr); } }
+
+  .qa { display: flex; flex-direction: column; gap: 1rem; }
+  .qa div { border-left: 3px solid var(--route); padding-left: 1rem; }
+  .qa h3 { font-size: 1rem; font-weight: 600; margin: 0 0 .25rem; }
+  .qa p { font-size: .9375rem; color: var(--ink-soft); margin: 0; }
+
+  table { width: 100%; border-collapse: collapse; font-size: .9375rem; }
+  th, td { text-align: left; vertical-align: top; padding: .5rem .5rem .5rem 0; border-bottom: 1px solid var(--rule); }
+  th { font-family: var(--display); font-size: .6875rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-faint); }
+  .tbl { overflow-x: auto; }
+
+  .sessies { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .75rem; }
+  .sessie { background: var(--card); border: 1px solid var(--rule); border-radius: .75rem; padding: 1rem; box-shadow: var(--shadow); }
+  .sessie h3 { font-size: 1rem; font-weight: 600; margin: 0 0 .25rem; }
+  .sessie p { font-size: .9375rem; color: var(--ink-soft); margin: 0; }
+  .sessie .datum { font-family: var(--display); font-size: .75rem; color: var(--ink-faint); margin-bottom: .35rem; }
+  @media (max-width: 40rem) { .sessies { grid-template-columns: minmax(0, 1fr); } }
+
+  .back { font-family: var(--display); font-size: .875rem; color: var(--ink-faint); text-decoration: none; }
+  .back:hover { color: var(--route); }
+  a { color: var(--route); }
+
+  /* ---------- uitlegdeel: demo, map, snelheden, principes, ladder ---------- */
+  .demo, .tree-demo {
+    background: var(--card);
+    border: 1px solid var(--rule);
+    border-radius: .875rem;
+    padding: 1.125rem;
+    box-shadow: var(--shadow);
+    display: flex; flex-direction: column; gap: .875rem;
+  }
+  .demo-head { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; }
+  .demo-head .label { color: var(--ink-soft); }
+  .toggle { display: inline-flex; border: 1px solid var(--rule); border-radius: 999px; padding: .2rem; gap: .2rem; }
+  .toggle button, .tasks button, .tree-step {
+    font-family: var(--display); font-weight: 600; cursor: pointer;
+    border: 1px solid transparent; background: transparent; color: var(--ink-soft);
+  }
+  .toggle button { font-size: .8125rem; padding: .35rem .8rem; border-radius: 999px; }
+  .toggle button[aria-pressed="true"] { background: var(--route); color: var(--btn-text); }
+  .demo-q { font-family: var(--mono); font-size: .9375rem; color: var(--ink); background: var(--paper); border-radius: .5rem; padding: .6rem .8rem; }
+  .demo-reads { font-size: .8125rem; color: var(--ink-faint); display: flex; gap: .6rem; flex-wrap: wrap; align-items: baseline; }
+  .demo-a { font-size: .9375rem; border-left: 3px solid var(--rule); padding-left: .875rem; margin: .6rem 0; }
+  .demo-pane[data-pane="met"] .demo-a { border-left-color: var(--route); }
+  .demo-note { font-size: .875rem; color: var(--ink-soft); }
+
+  .tasks { display: flex; gap: .4rem; flex-wrap: wrap; }
+  .tasks button { font-size: .8125rem; padding: .4rem .75rem; border-radius: 999px; border-color: var(--rule); }
+  .tasks button[aria-pressed="true"] { background: var(--route); border-color: var(--route); color: var(--btn-text); }
+  .tree-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 1.25rem; }
+  @media (max-width: 36rem) { .tree-grid { grid-template-columns: minmax(0, 1fr); } }
+  .tree { font-family: var(--mono); font-size: .8125rem; display: flex; flex-direction: column; gap: .2rem; }
+  .tree li { padding: .3rem .5rem; border-radius: .4rem; display: flex; justify-content: space-between; gap: .5rem; transition: background .2s, color .2s; }
+  .tree .dir { color: var(--ink-faint); }
+  .tree .sub { padding-left: 1.25rem; }
+  .tree .sub2 { padding-left: 2.25rem; }
+  .tree .f { color: var(--ink-faint); }
+  .tree .f.on { background: var(--route-soft); color: var(--ink); }
+  .tree .f.on .fn { font-weight: 500; }
+  .tree .ft { font-family: var(--display); font-size: .6875rem; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-faint); }
+  .tree .f.on .ft { color: var(--route); }
+  .tree-why { background: var(--paper); border-radius: .625rem; padding: .875rem 1rem; }
+  .tree-why p:last-child { font-size: .9375rem; margin-top: .35rem; }
+  @media (prefers-reduced-motion: reduce) { .tree li { transition: none; } }
+
+  .speeds { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem; }
+  @media (max-width: 36rem) { .speeds { grid-template-columns: minmax(0, 1fr); } }
+  .speed { background: var(--card); border: 1px solid var(--rule); border-radius: .75rem; padding: 1rem; box-shadow: var(--shadow); }
+  .speed h3 { font-size: 1rem; font-weight: 600; margin: 0 0 .5rem; }
+  .speed p:last-child { font-size: .9375rem; color: var(--ink-soft); margin: 0; }
+  .pulse { height: 6px; background: var(--rule); border-radius: 3px; overflow: hidden; margin-bottom: .75rem; }
+  .pulse span { display: block; height: 100%; width: 30%; background: var(--route); border-radius: 3px; animation: slide linear infinite; }
+  .slow .pulse span { animation-duration: 9s; }
+  .fast .pulse span { animation-duration: 1.6s; }
+  @keyframes slide { from { transform: translateX(-100%); } to { transform: translateX(340%); } }
+  @media (prefers-reduced-motion: reduce) { .pulse span { animation: none; width: 100%; } }
+
+  .principes { display: flex; flex-direction: column; gap: .5rem; }
+  .principe { background: var(--card); border: 1px solid var(--rule); border-radius: .75rem; box-shadow: var(--shadow); }
+  .principe summary { display: grid; grid-template-columns: 2rem 1fr 1.25rem; align-items: center; gap: .75rem; padding: .8rem 1rem; cursor: pointer; font-family: var(--display); font-weight: 600; list-style: none; }
+  .principe summary::-webkit-details-marker { display: none; }
+  .pnum { width: 1.75rem; height: 1.75rem; border-radius: 50%; background: var(--route-soft); color: var(--route); font-size: .8125rem; display: inline-flex; align-items: center; justify-content: center; }
+  .principe p { padding: 0 1rem 1rem 3.75rem; font-size: .9375rem; color: var(--ink-soft); margin: 0; }
+  .principe .chev { grid-area: auto; justify-self: end; }
+  .principe[open] .chev { transform: rotate(-135deg) translate(-2px, -2px); }
+
+  .ladder { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .5rem; align-items: end; }
+  @media (max-width: 36rem) { .ladder { grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: stretch; } }
+  .tree-step { display: flex; flex-direction: column; align-items: flex-start; gap: .15rem; padding: .75rem .8rem; border-radius: .625rem; border-color: var(--rule); background: var(--card); text-align: left; box-shadow: var(--shadow); }
+  .tree-step[data-step="1"] { min-height: 4.5rem; }
+  .tree-step[data-step="2"] { min-height: 5.5rem; }
+  .tree-step[data-step="3"] { min-height: 6.5rem; }
+  .tree-step[data-step="4"] { min-height: 7.5rem; }
+  @media (max-width: 36rem) { .tree-step { min-height: 0 !important; } }
+  .tree-step .snum { font-size: .75rem; color: var(--ink-faint); }
+  .tree-step .sname { font-size: 1rem; color: var(--ink); }
+  .tree-step .swhen { font-size: .75rem; font-weight: 500; color: var(--ink-faint); }
+  .tree-step[aria-pressed="true"] { border-color: var(--route); background: var(--route-soft); }
+  .tree-step.here .snum::after { content: " · je bent hier"; color: var(--route); }
+  .ladder-why { background: var(--card); border: 1px solid var(--rule); border-radius: .75rem; padding: 1rem; box-shadow: var(--shadow); }
+  .ladder-why p { font-size: .9375rem; color: var(--ink-soft); margin: 0; }
+</style>
+<div class="wrap">
+
+  <header>
+    <p class="label">Out of Office &middot; kick-off 15 september 2026</p>
+    <h1>Van negen wensen naar één werkende basis</h1>
+    <p class="thesis">Je hebt opgeschreven waar je AI voor wilt gebruiken: negen gebieden. En daaronder
+      staat je eigen diagnose: <strong>te veel tegelijk willen, en dan blijft het net niet af.</strong>
+      Deze pagina is het antwoord op die tweede zin.</p>
+    <p>Drie uur, drie stappen. Eerst een basis die jou kent, dan één geval dat er echt beter van
+      wordt, dan pas de volgende. Alles wat we bouwen staat in bestanden op jouw laptop, in jouw
+      woorden. Deze pagina groeit mee: na elke sessie komen de afspraken en de volgende stap erbij.</p>
+    <p><a class="back" href="../">&larr; De handout van 27 augustus, als je de basis nog eens wilt nalezen</a></p>
+  </header>
+
+  <!-- ============================ JOUW LIJST ============================ -->
+  <section id="gebieden">
+    <div class="sec-head">
+      <p class="label">Jouw voorbereiding</p>
+      <h2>Negen gebieden, drie soorten werk</h2>
+    </div>
+    <p>Dit is jouw lijst, ongewijzigd. Wat ik eraan heb toegevoegd is een soort per gebied, want
+      de negen zijn niet gelijk. <strong>Tekst</strong> is werk waar jij de bron bent en dat per keer
+      terugkomt; daar betaalt een goede basis zich direct uit. <strong>Systeem</strong> vraagt
+      toegang, koppelingen en inrichting; dat is ander werk dan een gesprek met AI. <strong>Sparring</strong>
+      wordt vanzelf beter zodra de basis er is, zonder dat je er iets voor hoeft te bouwen.</p>
+    <p class="step-note">Sorteer tijdens de kick-off zelf: <em>nu</em>, <em>later</em> of <em>niet</em>. Je keuze
+      blijft op dit apparaat bewaard en de lijst sorteert zich mee: <em>nu</em> bovenaan, <em>niet</em> onderaan.
+      Het is jouw structuur, niet de mijne.</p>
+
+    <div class="areas">
+      <div class="area" data-area="klantcontact">
+        <div><span class="kind">Tekst &middot; per aanvraag</span><h3>Klantcontact</h3>
+          <p>Van offerte-inbox naar afspraak, voorstel, uitnodiging, bedankmail, evaluatie en feedback. Zes stappen, elke keer dezelfde.</p></div>
+        <div class="sort"><button data-v="nu" aria-pressed="false">Nu</button><button data-v="later" aria-pressed="false">Later</button><button data-v="niet" aria-pressed="false">Niet</button></div>
+      </div>
+      <div class="area" data-area="draaiboeken">
+        <div><span class="kind">Tekst &middot; eigen bibliotheek</span><h3>Draaiboeken</h3>
+          <p>Werkvormen, tijden, materiaallijsten. Hergebruik van wat je al hebt, in een vaste vorm.</p></div>
+        <div class="sort"><button data-v="nu" aria-pressed="false">Nu</button><button data-v="later" aria-pressed="false">Later</button><button data-v="niet" aria-pressed="false">Niet</button></div>
+      </div>
+      <div class="area" data-area="nieuwsbrief">
+        <div><span class="kind">Tekst &middot; twee stemmen</span><h3>Content: nieuwsbrieven</h3>
+          <p>Tweemaandelijks, namens Teamtraining én namens de Foundation. Het enige gebied waar beide petten in zitten.</p></div>
+        <div class="sort"><button data-v="nu" aria-pressed="false">Nu</button><button data-v="later" aria-pressed="false">Later</button><button data-v="niet" aria-pressed="false">Niet</button></div>
+      </div>
+      <div class="area" data-area="content">
+        <div><span class="kind">Tekst en systeem</span><h3>Content: interviews, social, website, ads</h3>
+          <p>Interviews als blog of post: tekst. Posts in Canva-templates, Google Ads en Meta Ads: systeem. Dit is één regel op je lijst, maar het zijn twee soorten werk.</p></div>
+        <div class="sort"><button data-v="nu" aria-pressed="false">Nu</button><button data-v="later" aria-pressed="false">Later</button><button data-v="niet" aria-pressed="false">Niet</button></div>
+      </div>
+      <div class="area" data-area="eu">
+        <div><span class="kind">Tekst &middot; vaste vorm</span><h3>EU-projecten</h3>
+          <p>Rapportages, updates naar EU-teams, planning inzichtelijk houden. Vaste formats, terugkerend, en jij bent de bron.</p></div>
+        <div class="sort"><button data-v="nu" aria-pressed="false">Nu</button><button data-v="later" aria-pressed="false">Later</button><button data-v="niet" aria-pressed="false">Niet</button></div>
+      </div>
+      <div class="area" data-area="financieel">
+        <div><span class="kind">Systeem</span><h3>Financieel</h3>
+          <p>Begrotingen per project en totaal, gekoppeld, dashboards, uitbetalingen. Dit vraagt een plek waar cijfers wonen, niet een gesprek.</p></div>
+        <div class="sort"><button data-v="nu" aria-pressed="false">Nu</button><button data-v="later" aria-pressed="false">Later</button><button data-v="niet" aria-pressed="false">Niet</button></div>
+      </div>
+      <div class="area" data-area="sales">
+        <div><span class="kind">Systeem</span><h3>Sales</h3>
+          <p>Aan de bel trekken als je iets laat liggen, leadspecificaties, salesplan. Het eerste is een koppeling met je mail en agenda; het tweede is sparring.</p></div>
+        <div class="sort"><button data-v="nu" aria-pressed="false">Nu</button><button data-v="later" aria-pressed="false">Later</button><button data-v="niet" aria-pressed="false">Niet</button></div>
+      </div>
+      <div class="area" data-area="organisatie">
+        <div><span class="kind">Systeem</span><h3>Organisatie</h3>
+          <p>Mappen, documenten en bestanden ordenen in Drive. Kan, maar pas als je weet wat de structuur moet zijn. Die volgt uit de basis hieronder.</p></div>
+        <div class="sort"><button data-v="nu" aria-pressed="false">Nu</button><button data-v="later" aria-pressed="false">Later</button><button data-v="niet" aria-pressed="false">Niet</button></div>
+      </div>
+      <div class="area" data-area="strategie">
+        <div><span class="kind">Sparring</span><h3>Strategie en Mens &amp; AI</h3>
+          <p>Waar gaan we heen, dilemma's met collega's en partners, en waar contact volledig menselijk moet blijven. Wordt vanzelf beter zodra de basis er is.</p></div>
+        <div class="sort"><button data-v="nu" aria-pressed="false">Nu</button><button data-v="later" aria-pressed="false">Later</button><button data-v="niet" aria-pressed="false">Niet</button></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ UITDAGINGEN ============================ -->
+  <section id="uitdagingen">
+    <div class="sec-head">
+      <p class="label">Jouw vier uitdagingen</p>
+      <h2>Elk heeft een plek in de drie uur</h2>
+    </div>
+    <div class="qa">
+      <div>
+        <h3>01 &middot; Privacy en overzicht</h3>
+        <p>Het antwoord is een lijstje, geen zorg. Onderaan deze pagina staat hoe je in vijf minuten ziet
+          wat er nu gekoppeld is, en de regel voor wanneer je iets nieuws koppelt. Doen we aan het eind van sessie 1.</p>
+      </div>
+      <div>
+        <h3>02 &middot; Te veel tegelijk willen</h3>
+        <p>Dit is de reden dat we met één gebied beginnen en de rest bewust laten liggen. Niet omdat de rest
+          niet kan, maar omdat één ding dat werkt meer waard is dan negen die bijna werken. Jij sorteert hierboven, jij kiest.</p>
+      </div>
+      <div>
+        <h3>03 &middot; Collega's meenemen</h3>
+        <p>Sessie 3. Pas als er iets draait dat je kunt laten zien. Collega's meenemen in een idee werkt niet;
+          meenemen in iets dat al werkt wel.</p>
+      </div>
+      <div>
+        <h3>04 &middot; Menselijk houden (jouw belangrijkste punt)</h3>
+        <p>Dit wordt geen taak maar een regel in je basis: alles wat naar klanten, deelnemers of publiek gaat, schrijf jij
+          zelf af. AI maakt eerste versies, nooit de definitieve. Je verkoopt offline, dus AI werkt bij jou onzichtbaar.
+          Die regel gaat vandaag letterlijk in je bestand, en hij is meteen het criterium om de negen gebieden mee te sorteren.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ HOE HET WERKT ============================ -->
+  <section id="hoe">
+    <div class="sec-head">
+      <p class="label">Voordat we bouwen</p>
+      <h2>Hoe AI een verlengstuk van jou wordt, en niet van iedereen</h2>
+    </div>
+    <p>Eén mechanisme verklaart bijna alles wat hierna komt. <strong>Een AI-gesprek begint bij nul.</strong>
+      Wat je gisteren hebt uitgelegd, is vandaag weg. Het model is niet het probleem. Het probleem is dat er
+      niets is dat meegaat van het ene gesprek naar het volgende. Probeer het hieronder.</p>
+
+    <!-- ---- blok 1: zonder / met basis ---- -->
+    <div class="demo">
+      <div class="demo-head">
+        <p class="label">Dezelfde vraag, twee keer</p>
+        <div class="toggle" role="group" aria-label="Kies">
+          <button type="button" data-mode="zonder" aria-pressed="true">Zonder basis</button>
+          <button type="button" data-mode="met" aria-pressed="false">Met basis</button>
+        </div>
+      </div>
+      <p class="demo-q">&ldquo;Schrijf de nieuwsbrief van oktober.&rdquo;</p>
+      <div class="demo-pane" data-pane="zonder">
+        <p class="demo-reads"><span class="why-k">Gelezen vooraf</span> niets</p>
+        <p class="demo-a">Leuk! Om een goede nieuwsbrief te schrijven heb ik wat meer informatie nodig.
+          Wat voor organisatie is Out of Office? Wie is de doelgroep? Welke toon wil je: formeel of
+          informeel? Welke onderwerpen moeten erin? Heb je een voorbeeld van een eerdere editie?</p>
+        <p class="demo-note">Vijf vragen die je vorige keer ook beantwoordde. Dit is de stagiair die
+          elke ochtend opnieuw komt kennismaken.</p>
+      </div>
+      <div class="demo-pane" data-pane="met" hidden>
+        <p class="demo-reads"><span class="why-k">Gelezen vooraf</span> CLAUDE.md &middot; geheugen.md &middot; foundation/stem.md &middot; nieuwsbrief/werkwijze.md &middot; je agenda</p>
+        <p class="demo-a">Oktober is een Foundation-editie (zie werkwijze). In je agenda zie ik de
+          Veluwe-expeditie van 3 oktober en de crew-avond van 17 oktober. Voorstel voor de drie
+          onderwerpen: de expeditie met één quote van een deelnemer, de crew-avond als uitnodiging,
+          en de Santiago-tocht van februari als aankondiging. Klopt dat, of moet er iets anders in?
+          Daarna schrijf ik een eerste versie; jij schrijft hem af.</p>
+        <p class="demo-note">Geen vraag over wie je bent. Eén vraag over wat erin moet. En de regel
+          &ldquo;jij schrijft af&rdquo; zit erin omdat die in je grondwet staat. De agenda-items zijn een
+          voorbeeld; de echte komen uit jouw agenda.</p>
+      </div>
+    </div>
+
+    <p>De oplossing is dus niet beter prompten. De oplossing is een plek waar de context woont: een map op je
+      eigen laptop, met een paar bestanden die elk gesprek als eerste gelezen worden. Wat daarin staat, hoef
+      je nooit meer te zeggen. En omdat het bestanden zijn, kun je ze lezen, corrigeren en meenemen. Het is
+      van jou, niet van de tool.</p>
+
+    <!-- ---- blok 2: de map ---- -->
+    <div class="tree-demo">
+      <div class="demo-head">
+        <p class="label">Wat wordt er gelezen bij welke taak?</p>
+      </div>
+      <p class="step-note">Klik een taak. Groen is wat Claude leest, grijs wat hij laat liggen.</p>
+      <div class="tasks">
+        <button type="button" data-task="nieuwsbrief" aria-pressed="true">Nieuwsbrief Foundation</button>
+        <button type="button" data-task="draaiboek" aria-pressed="false">Draaiboek teamdag</button>
+        <button type="button" data-task="offerte" aria-pressed="false">Offerte beantwoorden</button>
+        <button type="button" data-task="sparren" aria-pressed="false">Sparren over strategie</button>
+      </div>
+      <div class="tree-grid">
+        <ul class="tree" aria-label="Mapstructuur">
+          <li class="dir">out-of-office/</li>
+          <li class="f" data-f="claude"><span class="fn">CLAUDE.md</span><span class="ft">altijd</span></li>
+          <li class="f" data-f="geheugen"><span class="fn">geheugen.md</span><span class="ft">altijd</span></li>
+          <li class="dir sub">teamtraining/</li>
+          <li class="f sub2" data-f="tt-stem"><span class="fn">stem.md</span></li>
+          <li class="dir sub">foundation/</li>
+          <li class="f sub2" data-f="fd-stem"><span class="fn">stem.md</span></li>
+          <li class="dir sub">nieuwsbrief/</li>
+          <li class="f sub2" data-f="nb-werk"><span class="fn">werkwijze.md</span></li>
+          <li class="f sub2" data-f="nb-arch"><span class="fn">archief/</span></li>
+          <li class="dir sub">draaiboeken/</li>
+          <li class="f sub2" data-f="db-werk"><span class="fn">werkwijze.md</span></li>
+          <li class="f sub2" data-f="db-vormen"><span class="fn">werkvormen.md</span></li>
+          <li class="dir sub">klantcontact/</li>
+          <li class="f sub2" data-f="kc-werk"><span class="fn">werkwijze.md</span><span class="ft">later</span></li>
+        </ul>
+        <div class="tree-why">
+          <p class="label">Waarom zo</p>
+          <p id="treeWhy"></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ---- blok 3: twee snelheden ---- -->
+    <div class="speeds">
+      <div class="speed slow">
+        <p class="fname">CLAUDE.md</p>
+        <h3>Wie je bent en hoe je wilt werken</h3>
+        <div class="pulse" aria-hidden="true"><span></span></div>
+        <p>Verandert zelden. Traag en persoonlijk. Dit maakt dat het antwoord klinkt als voor jou
+          geschreven, en niet als voor iedereen.</p>
+      </div>
+      <div class="speed fast">
+        <p class="fname">geheugen.md</p>
+        <h3>Wat er nu speelt</h3>
+        <div class="pulse" aria-hidden="true"><span></span></div>
+        <p>Verandert elk gesprek. Snel en zakelijk. Dit maakt dat het volgende gesprek verder gaat waar
+          het vorige ophield.</p>
+      </div>
+    </div>
+    <p class="step-note">Twee bestanden, twee snelheden. Wie ze door elkaar haalt, krijgt een grondwet vol
+      oude to-do's of een geheugen waarin elke keer opnieuw staat wie je bent. Houd ze uit elkaar en allebei
+      blijven ze klein.</p>
+
+    <!-- ---- blok 4: principes ---- -->
+    <div class="sec-head" style="margin-top:.5rem">
+      <p class="label">Zes principes</p>
+      <h2 style="font-size:1.25rem">Klik ze open. De eerste regel is het principe, de rest is waarom.</h2>
+    </div>
+    <div class="principes">
+      <details class="principe">
+        <summary><span class="pnum">1</span><span>In jouw woorden, niet in die van het model</span><span class="chev" aria-hidden="true"></span></summary>
+        <p>De bestanden ontstaan uit jouw antwoorden en jouw echte teksten. Nooit uit wat het model over je
+          aanneemt. Een grondwet die klinkt als een bedrijfsbrochure is waardeloos: die kent jou niet.
+          Daarom vragen alle prompts hieronder eerst, en schrijven ze pas daarna.</p>
+      </details>
+      <details class="principe">
+        <summary><span class="pnum">2</span><span>Corrigeer in het bestand, niet in de chat</span><span class="chev" aria-hidden="true"></span></summary>
+        <p>Zeg je in de chat &ldquo;korter&rdquo;, dan is dat morgen weg. Zet je in stem.md &ldquo;wij schrijven
+          maximaal 300 woorden&rdquo;, dan is het er voor altijd. Elke correctie hoort een regel te worden. Na
+          tien correcties heb je een bestand dat beter weet hoe jij schrijft dan een nieuwe collega na een maand.</p>
+      </details>
+      <details class="principe">
+        <summary><span class="pnum">3</span><span>Klein houden</span><span class="chev" aria-hidden="true"></span></summary>
+        <p>Een grondwet van drie pagina's wordt niet meer gelezen, ook niet door het model. Alles wat er niet
+          in hoeft, gaat eruit of naar een mapje. Twijfel je of iets erin moet: pas als je het drie keer hebt
+          moeten uitleggen.</p>
+      </details>
+      <details class="principe">
+        <summary><span class="pnum">4</span><span>Eén ding dat werkt, dan pas het volgende</span><span class="chev" aria-hidden="true"></span></summary>
+        <p>Jouw uitdaging 02. Negen gebieden tegelijk levert negen half werkende dingen op en het gevoel dat het
+          niet lukt. Eén gebied tot het echt draait, levert een patroon op dat je daarna zelf herhaalt. De
+          tweede kost de helft van de tijd van de eerste.</p>
+      </details>
+      <details class="principe">
+        <summary><span class="pnum">5</span><span>Elk gesprek eindigt met vastleggen</span><span class="chev" aria-hidden="true"></span></summary>
+        <p>&ldquo;Leg vast wat we hebben besloten en wat de volgende stap is.&rdquo; In geheugen.md. Zonder die zin
+          blijft je werk in een oude chat achter. Met die zin bouwt elk gesprek op het vorige. Dit is de
+          gewoonte waardoor je niet alles tegelijk hoeft: je weet dat het niet kwijtraakt.</p>
+      </details>
+      <details class="principe">
+        <summary><span class="pnum">6</span><span>Jij schrijft af</span><span class="chev" aria-hidden="true"></span></summary>
+        <p>Jouw uitdaging 04, als regel. AI maakt eerste versies. Alles wat naar klanten, deelnemers of publiek
+          gaat, maak jij af, in jouw woorden. Niet omdat het model het niet kan, maar omdat jouw merk offline en
+          menselijk is, en dat merkt een lezer aan één zin te veel.</p>
+      </details>
+    </div>
+
+    <!-- ---- blok 5: de ladder ---- -->
+    <div class="sec-head" style="margin-top:.5rem">
+      <p class="label">De ladder</p>
+      <h2 style="font-size:1.25rem">Wat er na deze drie uur komt, en waarom niet eerder</h2>
+    </div>
+    <p class="step-note">Elke trede legt gedrag vaster. Je zet hem pas als de trede eronder klopt. Klik een trede.</p>
+    <div class="ladder">
+      <button type="button" class="tree-step here" data-step="1" aria-pressed="true">
+        <span class="snum">1</span><span class="sname">Bestanden</span><span class="swhen">nu</span>
+      </button>
+      <button type="button" class="tree-step" data-step="2" aria-pressed="false">
+        <span class="snum">2</span><span class="sname">Startprompt</span><span class="swhen">na 3 keer</span>
+      </button>
+      <button type="button" class="tree-step" data-step="3" aria-pressed="false">
+        <span class="snum">3</span><span class="sname">Skill</span><span class="swhen">na 2 keer ongewijzigd</span>
+      </button>
+      <button type="button" class="tree-step" data-step="4" aria-pressed="false">
+        <span class="snum">4</span><span class="sname">Geplande taak</span><span class="swhen">alleen als nuttig</span>
+      </button>
+    </div>
+    <div class="ladder-why">
+      <p id="ladderWhy"></p>
+    </div>
+  </section>
+
+  <!-- ============================ STAP 1 ============================ -->
+  <section id="stap1">
+    <div class="sec-head">
+      <p class="label">Sessie 1 &middot; stap 1</p>
+      <h2>De basis: een map die jou kent</h2>
+    </div>
+    <p>Je werkt in Claude Co-Work, op mappen op je eigen laptop. Dan is een mappenstructuur niet een idee
+      maar de plek waar je AI in leeft. We houden hem klein: één hoofdbestand dat altijd gelezen wordt,
+      en per pet een bestand met je stem. Meer niet. Geen leesmij's, geen submappen die je nooit opent.</p>
+
+    <div class="files">
+      <div class="file">
+        <p class="fname">CLAUDE.md</p>
+        <h3>De grondwet</h3>
+        <p>Wie je bent, hoe je wilt werken, waar je goed in bent, waar je op vastloopt, en wat AI nooit doet.
+          Dit is het bestand dat altijd als eerste gelezen wordt.</p>
+      </div>
+      <div class="file">
+        <p class="fname">geheugen.md</p>
+        <h3>Het geheugen</h3>
+        <p>Wat er nu speelt, wat besloten is, wat de volgende stap is. Wordt aan het eind van elk gesprek bijgewerkt.</p>
+      </div>
+      <div class="file">
+        <p class="fname">teamtraining/stem.md</p>
+        <h3>De stem van het bedrijf</h3>
+        <p>Toon, woorden die je wel en niet gebruikt, wie het publiek is. Gevuld met jouw echte teksten, niet met aannames.</p>
+      </div>
+      <div class="file">
+        <p class="fname">foundation/stem.md</p>
+        <h3>De stem van de stichting</h3>
+        <p>Hetzelfde, voor de andere pet. Twee organisaties, dus twee stemmen, en dat is precies waarom losse prompts niet volstaan.</p>
+      </div>
+    </div>
+
+    <ol class="steps">
+      <li>Maak een lege map op je laptop, bijvoorbeeld <span class="tt">out-of-office</span>. Open Claude Co-Work
+        en koppel die map via <strong>map toevoegen</strong>.</li>
+      <li>Plak het blok hieronder en beantwoord de vragen. Kort, in je eigen woorden. Reken op tien minuten.</li>
+      <li>Zeg ja als Claude vraagt of hij bestanden mag maken. Dat is de bedoeling.</li>
+      <li>Lees <span class="tt">CLAUDE.md</span> daarna één keer hardop door. Staat er iets in dat niet klinkt als jij, verander het meteen.</li>
+    </ol>
+
+    <div class="copy-card">
+      <div class="copy-head">
+        <p class="label">De basis bouwen</p>
+        <button class="btn" id="copyBasis" type="button">Kopieer</button>
+      </div>
+      <div class="why" style="padding: 1.125rem 1.125rem 0;">
+        <div><span class="why-k">Waarvoor</span><span>Vijf vragen waaruit je basis ontstaat, plus twee lege stem-bestanden die je daarna vult met echte teksten.</span></div>
+        <div><span class="why-k">Waar</span><span>In Claude Co-Work, met je map gekoppeld.</span></div>
+        <div><span class="why-k">Daarna</span><span>Claude vraagt welke oude nieuwsbrieven hij mag lezen. Dat is stap 2.</span></div>
+      </div>
+      <pre id="promptBasis">Ik ben Rutger, oprichter van Out of Office Teamtraining (bedrijf, teamtrainingen buiten) en Out of Office Foundation (stichting, jongeren offline en de natuur in). Bouw in deze map een basis waarin jij mij kent, en waarin je per taak alleen leest wat nodig is.
+
+De map is leeg. Begin bij de vragen.
+
+REGELS
+- Stel de vragen één voor één. Wacht op mijn antwoord.
+- Schrijf mijn antwoorden op in mijn woorden. Niet mooier maken, niets aanvullen.
+- Geef tijdens de vragen geen advies.
+- Maak de bestanden pas na de laatste vraag.
+
+DE VRAGEN
+1. Wat doe ik, voor wie, en wat is het verschil tussen het bedrijf en de stichting? Wie werken er met mij samen en in welke rol?
+2. Hoe wil ik dat jij met mij werkt: kort of uitgebreid, eerst vragen of meteen doen, en wanneer moet je me tegenspreken?
+3. Waar ben ik goed in en heb ik geen hulp bij nodig?
+4. Waar loop ik elke keer op vast?
+5. Wat mag jij nooit doen? Ik geef alvast één regel die er hoe dan ook in komt: alles wat naar klanten, deelnemers of publiek gaat, schrijf ik zelf af. Jij maakt eerste versies, nooit de definitieve. Menselijk gaat voor snel. Vraag mij of ik nog meer van zulke regels heb.
+
+DE BESTANDEN
+- CLAUDE.md: bovenaan één regel: "Lees dit bestand altijd eerst. Lees daarna alleen de map die bij de taak hoort." Daaronder de antwoorden op vraag 1 tot en met 5, onder korte koppen.
+- geheugen.md: drie koppen: "Waar ik nu mee bezig ben", "Besloten", "Volgende stap". Nu nog bijna leeg. Onder "Besloten" komt: "15 september: we beginnen met [het gebied dat ik kies], de rest wacht."
+- teamtraining/stem.md en foundation/stem.md: elk met de koppen "Publiek", "Toon", "Woorden die ik gebruik", "Woorden die ik niet gebruik", "Voorbeelden". Laat ze leeg waar je het niet weet. Vul ze nooit met aannames; alleen met teksten die ik je geef.
+
+Maak niet meer dan deze vier bestanden en twee mappen. Vraag daarna: welke oude nieuwsbrieven, mails of teksten mag ik lezen om de twee stem-bestanden te vullen?</pre>
+    </div>
+  </section>
+
+  <!-- ============================ STAP 2 ============================ -->
+  <section id="stap2">
+    <div class="sec-head">
+      <p class="label">Sessie 1 &middot; stap 2</p>
+      <h2>Eén geval, echt draaien</h2>
+    </div>
+    <p>Het gebied dat je hierboven op <em>nu</em> hebt gezet. Ons voorstel is de nieuwsbrief, om twee redenen:
+      je hoeft niet te wachten op een aanvraag om te kunnen oefenen, en het is het enige gebied waar beide
+      stemmen in zitten. Kies je iets anders, dan werkt het blok hieronder op dezelfde manier: oude
+      voorbeelden erin, één nieuwe laten maken, één correctie, en die correctie niet in de chat maar in het bestand.</p>
+    <p>Dat laatste is het hele punt. Thuis corrigeer je in de chat en de volgende keer begin je opnieuw.
+      Hier corrigeer je in <span class="tt">stem.md</span>, en dan is de volgende versie meteen beter.</p>
+
+    <ol class="steps">
+      <li>Zet twee of drie oude nieuwsbrieven in de map, als tekst of pdf. Liefst één van het bedrijf en één van de stichting.</li>
+      <li>Plak het blok hieronder. Claude vult eerst de stem-bestanden uit die voorbeelden en laat je dat zien.</li>
+      <li>Laat één nieuwe editie schrijven, over iets dat er echt aankomt.</li>
+      <li>Lees hem. Zeg wat er niet klopt, en zeg erbij <strong>waarom</strong>. "Te lang" is geen correctie; "wij schrijven nooit
+        in de wij-vorm naar deelnemers" wel.</li>
+      <li>Vraag Claude die correctie in <span class="tt">stem.md</span> te zetten. Controleer of hij dat gedaan heeft.</li>
+    </ol>
+
+    <div class="copy-card">
+      <div class="copy-head">
+        <p class="label">De nieuwsbrief</p>
+        <button class="btn" id="copyNieuwsbrief" type="button">Kopieer</button>
+      </div>
+      <div class="why" style="padding: 1.125rem 1.125rem 0;">
+        <div><span class="why-k">Waarvoor</span><span>De stem-bestanden vullen uit echte teksten, en dan één editie schrijven die klinkt als jij.</span></div>
+        <div><span class="why-k">Waar</span><span>Zelfde map, nieuw gesprek. Claude leest CLAUDE.md eerst.</span></div>
+        <div><span class="why-k">Daarna</span><span>Elke correctie die je geeft, gaat in het bestand. Niet in de chat.</span></div>
+      </div>
+      <pre id="promptNieuwsbrief">Lees CLAUDE.md. Lees daarna de nieuwsbrieven die ik in deze map heb gezet.
+
+Stap 1. Vul teamtraining/stem.md en foundation/stem.md uit die voorbeelden: publiek, toon, woorden die ik gebruik, woorden die ik niet gebruik. Citeer bij elke observatie de zin uit een nieuwsbrief waar je hem op baseert. Laat mij de twee bestanden zien voordat je verder gaat, en vraag wat er niet klopt.
+
+Stap 2. Vraag mij: voor welke van de twee is de volgende nieuwsbrief, wanneer moet hij eruit, en wat zijn de twee of drie dingen die erin moeten? Niet meer vragen dan dat.
+
+Stap 3. Schrijf een eerste versie, in de stem uit het bijbehorende stem-bestand. Houd de lengte en opbouw van de oude edities aan. Zet er bovenaan bij: "Eerste versie. Rutger schrijft hem af." Dat is de regel uit CLAUDE.md en die geldt altijd.
+
+Stap 4. Als ik iets corrigeer: vraag waarom, en zet de reden als regel in het stem-bestand. Pas dan de tekst aan. Laat me zien welke regel je hebt toegevoegd.
+
+Sluit af met: wat hebben we vastgelegd, en wat is de volgende stap? Zet dat in geheugen.md.</pre>
+    </div>
+  </section>
+
+  <!-- ============================ HUISWERK ============================ -->
+  <section id="huiswerk">
+    <div class="sec-head">
+      <p class="label">Tussen sessie 1 en 2</p>
+      <h2>Zelf één keer doen: een draaiboek</h2>
+    </div>
+    <p>Het gebied met de meeste herhaling is waarschijnlijk je draaiboeken: werkvormen, tijden,
+      materiaallijsten, per training opnieuw. Dit doe je zelf, vóór sessie 2, met hetzelfde patroon
+      als de nieuwsbrief. Niet om het perfect te krijgen, maar om te ervaren waar het schuurt. Dat
+      is wat we in sessie 2 oplossen.</p>
+
+    <ol class="steps">
+      <li>Maak een map <span class="tt">draaiboeken</span> en zet er twee of drie bestaande draaiboeken in.</li>
+      <li>Plak het blok hieronder in een nieuw gesprek.</li>
+      <li>Laat één draaiboek maken voor een training die er echt aankomt.</li>
+      <li>Noteer in <span class="tt">geheugen.md</span> in drie regels: wat klopte, wat niet, en wat je niet wist te vragen. Dat is de agenda van sessie 2.</li>
+    </ol>
+
+    <div class="copy-card">
+      <div class="copy-head">
+        <p class="label">Het draaiboek</p>
+        <button class="btn" id="copyDraaiboek" type="button">Kopieer</button>
+      </div>
+      <div class="why" style="padding: 1.125rem 1.125rem 0;">
+        <div><span class="why-k">Waarvoor</span><span>Een vaste vorm afleiden uit je eigen draaiboeken, en die één keer gebruiken.</span></div>
+        <div><span class="why-k">Waar</span><span>Zelfde map, nieuw gesprek, met de map draaiboeken gevuld.</span></div>
+        <div><span class="why-k">Daarna</span><span>Je hebt draaiboeken/werkwijze.md: de vorm die je vanaf nu hergebruikt.</span></div>
+      </div>
+      <pre id="promptDraaiboek">Lees CLAUDE.md. Lees daarna de draaiboeken in de map draaiboeken.
+
+Stap 1. Leid uit die draaiboeken af wat de vaste vorm is: welke onderdelen komen altijd terug (bijvoorbeeld doel, tijden, werkvormen, materiaal, rolverdeling), in welke volgorde, en hoe gedetailleerd. Schrijf dat als draaiboeken/werkwijze.md. Zet er ook in wat je NIET zeker weet, als vraag aan mij.
+
+Stap 2. Maak een lijst van alle werkvormen die je in de draaiboeken tegenkomt, elk met één regel: naam, doel, duur, materiaal. Zet die in draaiboeken/werkvormen.md. Verzin geen werkvormen erbij.
+
+Stap 3. Vraag mij: voor welke training wil ik een nieuw draaiboek, hoe lang, hoeveel mensen, wat is het doel? Niet meer vragen dan dat.
+
+Stap 4. Schrijf het draaiboek in de vorm uit werkwijze.md, met alleen werkvormen uit werkvormen.md. Waar je twijfelt, zet je een vraag in de tekst in plaats van een aanname.
+
+Als ik iets corrigeer: vraag waarom, en zet de reden in werkwijze.md. Sluit af met wat we hebben vastgelegd en de volgende stap, in geheugen.md.</pre>
+    </div>
+  </section>
+
+  <!-- ============================ KOPPELINGEN ============================ -->
+  <section id="koppelingen">
+    <div class="sec-head">
+      <p class="label">Uitdaging 01</p>
+      <h2>Koppelingen: wat er aan staat, en wanneer je iets nieuws koppelt</h2>
+    </div>
+    <p>Je agenda en mail zijn al gekoppeld. Dat is nuttig en het is ook precies waar de onrust
+      vandaan komt: je weet niet meer zeker wat er allemaal meekijkt. Het antwoord is een lijstje
+      dat je één keer maakt en daarna bijhoudt in <span class="tt">CLAUDE.md</span>.</p>
+
+    <ol class="steps">
+      <li>Open in de Claude-app je instellingen en ga naar <strong>Connectors</strong> (of <strong>Koppelingen</strong>).
+        Daar staat alles wat gekoppeld is, per dienst.</li>
+      <li>Schrijf ze over in <span class="tt">CLAUDE.md</span> onder een kop <strong>Koppelingen</strong>: welke dienst,
+        sinds wanneer, waarvoor. Weet je bij een koppeling niet meer waarvoor, zet hem dan uit. Aanzetten kan altijd weer.</li>
+      <li>Kijk in Co-Work welke mappen gekoppeld zijn. Alles in die mappen kan gelezen worden. Staat er iets in dat
+        er niet hoort (contracten, persoonsgegevens van deelnemers, financiën van anderen), verplaats het.</li>
+      <li>Noteer bij elke koppeling in één zin wat Claude ermee mag: lezen, of ook schrijven en versturen. Mail versturen
+        en agenda-items maken laat je in het begin uit staan. Concepten maken is genoeg, verzenden doe je zelf. Dat is dezelfde regel als "jij schrijft af".</li>
+    </ol>
+
+    <div class="note">
+      <p class="label">De regel voor iets nieuws koppelen</p>
+      <p>Pas als je hetzelfde werk drie keer met de hand hebt aangeleverd. Drie keer een nieuwsbrief uit een pdf
+        geplakt: dan is een Drive-koppeling logisch. Drie keer een offerte uit je inbox gekopieerd: dan is mail-lezen
+        bij die taak logisch. Eerder koppelen betekent dat je iets automatiseert waarvan je nog niet weet hoe het moet.</p>
+    </div>
+
+    <p class="step-note">Voor de negen gebieden betekent dat nu het volgende. Dit vullen we per sessie aan.</p>
+    <div class="tbl">
+      <table>
+        <tr><th>Gebied</th><th>Koppeling nodig?</th><th>Wanneer</th></tr>
+        <tr><td>Nieuwsbrief</td><td>Geen. Oude edities in de map is genoeg.</td><td>Nu</td></tr>
+        <tr><td>Draaiboeken</td><td>Geen. Bestanden in de map.</td><td>Tussen sessie 1 en 2</td></tr>
+        <tr><td>Klantcontact</td><td>Mail lezen (staat al aan). Versturen niet.</td><td>Sessie 2, als de aanvragen er zijn</td></tr>
+        <tr><td>EU-projecten</td><td>Geen, tenzij de rapportages in Drive staan.</td><td>Sessie 2 of 3</td></tr>
+        <tr><td>Sales-signalen</td><td>Mail en agenda lezen (staan al aan).</td><td>Later. Eerst weten wat "laten liggen" precies is.</td></tr>
+        <tr><td>Social in Canva</td><td>Canva-koppeling bestaat. Tekst kan zonder.</td><td>Later. Eerst de stem, dan de template.</td></tr>
+        <tr><td>Financieel</td><td>Een plek waar cijfers wonen (spreadsheet of boekhoudpakket).</td><td>Niet in deze drie uur</td></tr>
+        <tr><td>Drive ordenen</td><td>Drive-koppeling.</td><td>Niet in deze drie uur. Structuur eerst, dan opruimen.</td></tr>
+        <tr><td>Ads</td><td>Google Ads en Meta Ads.</td><td>Niet in deze drie uur</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============================ GEWOONTE ============================ -->
+  <section id="gewoonte">
+    <div class="sec-head">
+      <p class="label">De ene gewoonte</p>
+      <h2>Elk gesprek eindigt met dezelfde zin</h2>
+    </div>
+    <p>"Leg vast wat we hebben besloten en wat de volgende stap is." Claude zet het in
+      <span class="tt">geheugen.md</span>. Zonder die zin blijven je besluiten achter in een oude chat
+      en begin je de volgende keer opnieuw. Met die zin bouwt elk gesprek op het vorige. Dit is het
+      verschil tussen een tool en een co-founder, en het is de gewoonte die je uitdaging 02 oplost:
+      je hoeft niet alles tegelijk te doen als je zeker weet dat het niet kwijtraakt.</p>
+  </section>
+
+  <!-- ============================ SESSIES ============================ -->
+  <section id="sessies">
+    <div class="sec-head">
+      <p class="label">De drie uur</p>
+      <h2>Afspraken en volgende stap</h2>
+    </div>
+    <p class="step-note">Wordt na elke sessie bijgewerkt. Drie regels per sessie, meer niet.</p>
+    <div class="sessies">
+      <div class="sessie">
+        <p class="datum">Sessie 1 &middot; 15 september</p>
+        <h3>Basis en één geval</h3>
+        <p>Nog in te vullen na het gesprek: wat we kozen, wat we vastlegden, wat de volgende stap is.</p>
+      </div>
+      <div class="sessie">
+        <p class="datum">Sessie 2 &middot; datum volgt</p>
+        <h3>Het tweede geval</h3>
+        <p>Wat schuurde bij het draaiboek, en het gebied dat je op "nu" hebt gezet maar nog niet draait.</p>
+      </div>
+      <div class="sessie">
+        <p class="datum">Sessie 3 &middot; datum volgt</p>
+        <h3>Vastleggen en collega's</h3>
+        <p>Wat werkt, opschrijven zodat het blijft werken. En hoe je Annelies en Bibi meeneemt in iets dat al draait.</p>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<script>
+  (function () {
+    function wireCopy(btnId, preId) {
+      var btn = document.getElementById(btnId);
+      var pre = document.getElementById(preId);
+      if (!btn || !pre) return;
+      btn.addEventListener('click', function () {
+        var text = pre.innerText;
+        var done = function () {
+          btn.textContent = 'Gekopieerd';
+          btn.setAttribute('data-done', '1');
+          setTimeout(function () { btn.textContent = 'Kopieer'; btn.removeAttribute('data-done'); }, 2200);
+        };
+        function fallback() {
+          var sel = window.getSelection();
+          var range = document.createRange();
+          range.selectNodeContents(pre);
+          sel.removeAllRanges();
+          sel.addRange(range);
+          try { document.execCommand('copy'); done(); } catch (e) { /* selectie staat klaar */ }
+        }
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(done, fallback);
+        } else { fallback(); }
+      });
+    }
+    wireCopy('copyBasis', 'promptBasis');
+    wireCopy('copyNieuwsbrief', 'promptNieuwsbrief');
+    wireCopy('copyDraaiboek', 'promptDraaiboek');
+
+
+    // --- demo: zonder / met basis ---
+    var panes = document.querySelectorAll('.demo-pane');
+    Array.prototype.forEach.call(document.querySelectorAll('.toggle button'), function (b) {
+      b.addEventListener('click', function () {
+        var m = b.getAttribute('data-mode');
+        Array.prototype.forEach.call(document.querySelectorAll('.toggle button'), function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+        Array.prototype.forEach.call(panes, function (p) { p.hidden = p.getAttribute('data-pane') !== m; });
+      });
+    });
+
+    // --- map: wat wordt gelezen ---
+    var TASKS = {
+      nieuwsbrief: { on: ['claude','geheugen','fd-stem','nb-werk','nb-arch'],
+        why: 'De grondwet en het geheugen altijd. Dan alleen de stem van de Foundation, de werkwijze en het archief. De stem van het bedrijf blijft dicht: dat is de andere pet, en die zou de toon vervuilen.' },
+      draaiboek: { on: ['claude','geheugen','db-werk','db-vormen'],
+        why: 'Grondwet en geheugen, plus de vorm en de werkvormen. Geen stem-bestanden: een draaiboek is voor jezelf en je collega’s, niet voor publiek. Geen nieuwsbriefregels: die hebben hier niets te zoeken.' },
+      offerte: { on: ['claude','geheugen','tt-stem','kc-werk'],
+        why: 'Grondwet, geheugen, de stem van het bedrijf en straks de werkwijze voor klantcontact. Die laatste bestaat nog niet: dat is sessie 2, als je aanvragen er zijn. Tot die tijd doet de stem het werk.' },
+      sparren: { on: ['claude','geheugen'],
+        why: 'Alleen de grondwet en het geheugen. Sparren gaat over wie je bent en waar je staat, niet over hoe een nieuwsbrief eruitziet. Dit is waarom sparring vanzelf beter wordt zodra de basis er is: er hoeft niets extra’s voor gebouwd te worden.' }
+    };
+    var whyEl = document.getElementById('treeWhy');
+    function showTask(t) {
+      var cfg = TASKS[t]; if (!cfg) return;
+      Array.prototype.forEach.call(document.querySelectorAll('.tree .f'), function (li) {
+        li.classList.toggle('on', cfg.on.indexOf(li.getAttribute('data-f')) !== -1);
+      });
+      Array.prototype.forEach.call(document.querySelectorAll('.tasks button'), function (b) {
+        b.setAttribute('aria-pressed', b.getAttribute('data-task') === t ? 'true' : 'false');
+      });
+      if (whyEl) whyEl.textContent = cfg.why;
+    }
+    Array.prototype.forEach.call(document.querySelectorAll('.tasks button'), function (b) {
+      b.addEventListener('click', function () { showTask(b.getAttribute('data-task')); });
+    });
+    showTask('nieuwsbrief');
+
+    // --- ladder ---
+    var STEPS = {
+      '1': 'Bestanden zijn context, geen gedrag. Claude weet wie je bent en hoe je werk eruitziet, maar jij start elk gesprek en zegt wat je wilt. Hier blijf je tot je hetzelfde werk drie keer hebt gedaan. Dat is niet traag, dat is leren wat je werkwijze eigenlijk is.',
+      '2': 'Na drie keer hetzelfde werk leg je de herhaling vast als startprompt in een bestand, bijvoorbeeld nieuwsbrief/start.md. Je plakt hem elke keer. Het proces staat nu op papier, en dat is wat je aan een collega kunt geven. Eerder vastleggen betekent een werkwijze vastleggen die nog niet klopt.',
+      '3': 'Is de startprompt twee keer ongewijzigd gebruikt, dan wordt hij een skill: een map met een SKILL.md die zegt wanneer hij geldt en wat er dan gebeurt. Je hoeft niet meer te onthouden dat het proces bestaat; je zegt "nieuwsbrief" en Claude pakt de werkwijze, het archief en de bronnen erbij. Een skill kan Annelies of Bibi ook gebruiken. Dit hoort bij sessie 3. Wie hier begint, bevriest zijn fouten mee.',
+      '4': 'Optioneel. Elke twee maanden op de eerste: agenda lezen, kandidaat-onderwerpen verzamelen, een eerste versie klaarzetten in de map. Jij opent, kiest, schrijft af. Nooit versturen. Voor een tweemaandelijks ritme is de winst klein; het risico dat je een editie opent die je niet herkent is echt. Noemen, niet bouwen.'
+    };
+    var ladderWhy = document.getElementById('ladderWhy');
+    function showStep(n) {
+      Array.prototype.forEach.call(document.querySelectorAll('.tree-step'), function (b) {
+        b.setAttribute('aria-pressed', b.getAttribute('data-step') === n ? 'true' : 'false');
+      });
+      if (ladderWhy) ladderWhy.textContent = STEPS[n] || '';
+    }
+    Array.prototype.forEach.call(document.querySelectorAll('.tree-step'), function (b) {
+      b.addEventListener('click', function () { showStep(b.getAttribute('data-step')); });
+    });
+    showStep('1');
+
+    // --- sorteren: nu / later / niet, per apparaat bewaard ---
+    var KEY = 'ooo-sort';
+    var state = {};
+    try { state = JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch (e) { state = {}; }
+    var list = document.querySelector('.areas');
+    var areas = Array.prototype.slice.call(document.querySelectorAll('.area'));
+    var RANK = { nu: 0, later: 1, niet: 3 }; // ongesorteerd = 2, tussen later en niet
+
+    function rank(area) {
+      var v = state[area.getAttribute('data-area')];
+      return RANK.hasOwnProperty(v) ? RANK[v] : 2;
+    }
+    function reorder() {
+      if (!list) return;
+      var sorted = areas.slice().sort(function (a, b) {
+        var d = rank(a) - rank(b);
+        return d !== 0 ? d : areas.indexOf(a) - areas.indexOf(b); // gelijke rang: oorspronkelijke volgorde
+      });
+      sorted.forEach(function (a) { list.appendChild(a); });
+    }
+    areas.forEach(function (area) {
+      var id = area.getAttribute('data-area');
+      var btns = area.querySelectorAll('.sort button');
+      function render() {
+        Array.prototype.forEach.call(btns, function (b) {
+          b.setAttribute('aria-pressed', state[id] === b.getAttribute('data-v') ? 'true' : 'false');
+        });
+      }
+      Array.prototype.forEach.call(btns, function (b) {
+        b.addEventListener('click', function () {
+          var v = b.getAttribute('data-v');
+          if (state[id] === v) { delete state[id]; } else { state[id] = v; }
+          try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) { /* prima */ }
+          render();
+          reorder();
+        });
+      });
+      render();
+    });
+    reorder();
+  })();
+</script>
+</body>
+</html>
