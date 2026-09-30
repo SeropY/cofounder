@@ -894,32 +894,63 @@
         uitkomst, geen mislukking.</p>
     </div>
 
-    <p>Nog geen bestanden, of liever opnieuw? Kies de route die past bij hoe je Claude gebruikt.</p>
+    <p>Nog geen bestanden, of liever opnieuw? Dan bouwen we ze nu. Eerst even kijken welke versie van
+      Claude je hebt.</p>
+
+    <div class="note">
+      <p class="label">Oude of nieuwe versie van Claude?</p>
+      <p>Tot half september had Claude twee standen: <strong>Chat</strong> om te praten en
+        <strong>Cowork</strong> om in je bestanden te werken. Die twee zijn samengevoegd. De wijziging
+        komt in fases, dus het kan dat jij de oude opzet nog ziet. Kijk linksonder in het invoerveld:
+        staat daar nog de keuze tussen Chat en Cowork, dan heb je de oude versie. Staat die er niet,
+        dan heb je de nieuwe. De methode is in beide gevallen dezelfde, alleen de knoppen verschillen.</p>
+    </div>
 
     <div class="start-routes">
       <details class="start-card">
         <summary>
-          <span class="sum-main"><span class="sum-key">Route A</span> met Claude Co-Work</span>
-          <span class="sum-sub">Claude schrijft de bestanden zelf</span>
+          <span class="sum-main"><span class="sum-key">Nieuwe versie</span> één Claude</span>
+          <span class="sum-sub">Geen keuze meer tussen Chat en Cowork</span>
           <span class="chev" aria-hidden="true"></span>
         </summary>
         <ol class="steps">
           <li>Maak een lege map op je laptop. Naam maakt niet uit, bijvoorbeeld
             <span class="tt">mijn-werk</span>.</li>
-          <li>Open de Claude desktop-app en kies in het invoerveld voor <strong>Co-Work</strong>.
-            Dat is de stand waarin Claude niet alleen praat maar ook in je bestanden mag werken.</li>
-          <li>Klik op <strong>map toevoegen</strong> en kies die lege map.</li>
+          <li>Open de Claude desktop-app en begin een nieuw gesprek. Je hoeft geen stand te kiezen:
+            Claude bepaalt zelf of iets een kort antwoord is of een taak in je bestanden.</li>
+          <li>Klik in het invoerveld op <strong>Work in a project or folder</strong> (soms staat er
+            <strong>Work in a folder</strong>) en kies die lege map.</li>
           <li>Plak het blok hieronder en beantwoord de vragen. Kort, in je eigen woorden. Reken op tien minuten.</li>
           <li>Zeg ja als Claude vraagt of hij bestanden mag maken. Dat is de bedoeling.</li>
         </ol>
         <p class="outcome">Aan het eind staan <span class="tt">CLAUDE.md</span> en
-          <span class="tt">geheugen.md</span> in je map. Alles wat in die map staat kan gelezen worden,
-          dus zet er alleen in wat erbij hoort.</p>
+          <span class="tt">geheugen.md</span> in je map. Dit werkt alleen in de desktop-app: in de
+          browser en op je telefoon kan Claude niet bij mappen op je laptop.</p>
       </details>
 
       <details class="start-card">
         <summary>
-          <span class="sum-main"><span class="sum-key">Route B</span> in Claude Chat</span>
+          <span class="sum-main"><span class="sum-key">Oude versie</span> met Cowork</span>
+          <span class="sum-sub">Je ziet nog Chat en Cowork naast elkaar</span>
+          <span class="chev" aria-hidden="true"></span>
+        </summary>
+        <ol class="steps">
+          <li>Maak een lege map op je laptop. Naam maakt niet uit, bijvoorbeeld
+            <span class="tt">mijn-werk</span>.</li>
+          <li>Open de Claude desktop-app en kies linksonder in het invoerveld voor <strong>Cowork</strong>.
+            Dat is de stand waarin Claude niet alleen praat maar ook in je bestanden mag werken.</li>
+          <li>Klik op de knop om een map toe te voegen en kies die lege map.</li>
+          <li>Plak het blok hieronder en beantwoord de vragen. Kort, in je eigen woorden. Reken op tien minuten.</li>
+          <li>Zeg ja als Claude vraagt of hij bestanden mag maken. Dat is de bedoeling.</li>
+        </ol>
+        <p class="outcome">Aan het eind staan <span class="tt">CLAUDE.md</span> en
+          <span class="tt">geheugen.md</span> in je map. Krijg je later de nieuwe versie, dan blijft
+          je map gewoon werken. Je hoeft niets opnieuw te doen.</p>
+      </details>
+
+      <details class="start-card">
+        <summary>
+          <span class="sum-main"><span class="sum-key">Zonder map</span> in de browser of op je telefoon</span>
           <span class="sum-sub">Je bewaart de bestanden zelf</span>
           <span class="chev" aria-hidden="true"></span>
         </summary>
@@ -931,9 +962,12 @@
           <li>Voeg ze bij elk nieuw gesprek toe als bijlage, of zet ze in een Project.</li>
         </ol>
         <p class="outcome">Zet je die twee bestanden later alsnog in een map die je koppelt, dan werkt het
-          vanaf dat moment als route A. Je hoeft niets opnieuw te doen.</p>
+          vanaf dat moment zoals in de andere twee routes. Je hoeft niets opnieuw te doen.</p>
       </details>
     </div>
+
+    <p class="step-note">In alle gevallen geldt: alles wat in de gekoppelde map staat kan gelezen worden,
+      dus zet er alleen in wat erbij hoort.</p>
 
     <p>Lees <span class="tt">CLAUDE.md</span> na afloop één keer hardop door. Staat er iets in dat niet
       klinkt als jij, verander het meteen.</p>
@@ -945,7 +979,7 @@
       </div>
       <div class="why" style="padding: 1.125rem 1.125rem 0;">
         <div><span class="why-k">Waarvoor</span><span>Zes vragen waaruit je basis ontstaat: vijf over jou, één over de rol van je AI.</span></div>
-        <div><span class="why-k">Waar</span><span>In Claude: in Co-Work met je map gekoppeld, of in een gewoon gesprek.</span></div>
+        <div><span class="why-k">Waar</span><span>In Claude, met je map gekoppeld. Of in een gewoon gesprek, zonder map.</span></div>
         <div><span class="why-k">Daarna</span><span>Claude vraagt welk werk je als eerste oppakt. Dat is stap 2.</span></div>
       </div>
       <pre id="promptBasis">Bouw een basis waarin jij mij kent, zodat ik je dit nooit meer hoef uit te leggen. Begin bij de vragen.
