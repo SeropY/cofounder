@@ -485,6 +485,7 @@
   .sessie { background: var(--card); border: 1px solid var(--rule); border-radius: .75rem; padding: 1rem; box-shadow: var(--shadow); }
   .sessie h3 { font-size: 1rem; font-weight: 600; margin: 0 0 .25rem; }
   .sessie p { font-size: .9375rem; color: var(--ink-soft); margin: 0; }
+  .sessie p + p:not(.datum) { margin-top: .5rem; }
   .sessie .datum { font-family: var(--display); font-size: .75rem; color: var(--ink-faint); margin-bottom: .35rem; }
   @media (max-width: 40rem) { .sessies { grid-template-columns: minmax(0, 1fr); } }
 
@@ -717,8 +718,8 @@
       <p class="label">Input van jou</p>
       <h2>Zes taken waarbij AI je kan ondersteunen</h2>
     </div>
-    <p>Dit zijn de zes taken die je noemde. In de sessie lopen we ze samen langs en bepalen we wat we
-      gaan doen.</p>
+    <p>Dit zijn de zes taken die je noemde. In sessie 1 zijn we ze samen langsgelopen en kozen
+      we outreach als eerste en het overzicht over je to-do's als tweede.</p>
     <ol class="steps">
       <li>Na een meeting de samenvatting en to-do's meteen in een mail, die je even checkt en dan
         verstuurt, mogelijk ook meteen in je agenda.</li>
@@ -781,8 +782,8 @@
       <div class="demo-head">
         <p class="label">Wat wordt er gelezen bij welke taak?</p>
       </div>
-      <p class="step-note">Klik een taak. Blauw is wat Claude leest, de rest laat hij liggen. Zo gaat
-        jouw map eruitzien als de drie doelen staan.</p>
+      <p class="step-note">Klik een taak. Blauw is wat Claude leest, de rest laat hij liggen. Zo kan
+        jouw map eruitzien als er meer taken in staan.</p>
       <div class="tasks">
         <button type="button" data-task="meeting" aria-pressed="true">Mail na een meeting</button>
         <button type="button" data-task="todo" aria-pressed="false">Dag plannen</button>
@@ -800,8 +801,8 @@
           <li class="f sub2" data-f="mt-werk"><span class="fn">werkwijze.md</span></li>
           <li class="f sub2" data-f="mt-aant"><span class="fn">aantekeningen/</span></li>
           <li class="dir sub">outreach/</li>
-          <li class="f sub2" data-f="ou-werk"><span class="fn">werkwijze.md</span><span class="ft">later</span></li>
-          <li class="f sub2" data-f="ou-lijst"><span class="fn">lijst</span><span class="ft">later</span></li>
+          <li class="f sub2" data-f="ou-werk"><span class="fn">werkwijze.md</span></li>
+          <li class="f sub2" data-f="ou-lijst"><span class="fn">lijst</span></li>
         </ul>
         <div class="tree-why">
           <p class="label">Waarom zo</p>
@@ -851,7 +852,7 @@
       <details class="principe">
         <summary><span class="pnum">4</span><span>Eén ding dat werkt, dan pas het volgende</span><span class="chev" aria-hidden="true"></span></summary>
         <p>Al je wensen tegelijk oppakken levert zes half werkende dingen op en het gevoel dat het
-          niet lukt. De mail na een meeting tot hij écht draait, levert een aanpak op die je bij je to-do's en je outreach herhaalt, en het tweede kost je dan veel minder tijd dan het eerste.</p>
+          niet lukt. Je outreach tot hij écht draait, levert een aanpak op die je bij je to-do's herhaalt, en het tweede kost je dan veel minder tijd dan het eerste.</p>
       </details>
       <details class="principe">
         <summary><span class="pnum">5</span><span>Elk gesprek eindigt met vastleggen</span><span class="chev" aria-hidden="true"></span></summary>
@@ -894,7 +895,7 @@
       <p class="label">Sessie 1 &middot; stap 1</p>
       <h2>De basis: twee bestanden die jou kennen</h2>
     </div>
-    <p>We houden het klein met één bestand dat altijd gelezen wordt en één dat bijhoudt wat er speelt. Je stem en de werkwijze per doel komen pas in stap 2, en die halen we alleen uit je eigen teksten.</p>
+    <p>We houden het klein met één bestand dat altijd gelezen wordt en één dat bijhoudt wat er speelt. Je stem en de werkwijze per taak komen daarna, en die halen we alleen uit je eigen teksten.</p>
 
     <div class="files">
       <div class="file">
@@ -910,9 +911,9 @@
       </div>
       <div class="file">
         <p class="fname">stem.md</p>
-        <h3>Je stem (komt in stap 2)</h3>
+        <h3>Je stem (komt later)</h3>
         <p>Toon, woorden die je wel en niet gebruikt, aan wie je schrijft. Gevuld met mails die je zelf
-          hebt verstuurd, niet met aannames. Dit bestand gebruiken de mail na een meeting én je outreach.</p>
+          hebt verstuurd, niet met aannames. Dit bestand gebruikt je outreach.</p>
       </div>
     </div>
 
@@ -1007,7 +1008,7 @@
       <div class="why" style="padding: 1.125rem 1.125rem 0;">
         <div><span class="why-k">Waarvoor</span><span>Zes vragen waaruit je basis ontstaat: vijf over jou, één over de rol van je AI.</span></div>
         <div><span class="why-k">Waar</span><span>In Claude, met je map gekoppeld. Of in een gewoon gesprek, zonder map.</span></div>
-        <div><span class="why-k">Daarna</span><span>Claude vraagt welk werk je als eerste oppakt. Dat is stap 2.</span></div>
+        <div><span class="why-k">Daarna</span><span>Claude vraagt welk werk je als eerste oppakt. Dat werd je outreach.</span></div>
       </div>
       <pre id="promptBasis">Bouw een basis waarin jij mij kent, zodat ik je dit nooit meer hoef uit te leggen. Begin bij de vragen.
 
@@ -1061,127 +1062,13 @@ Vraag daarna: welk werk pakken we als eerste op?</pre>
       &ldquo;bij schrijfwerk maak je eerste versies; bij vragen over richting stel je vragen en geef je geen antwoord.&rdquo;</p>
   </section>
 
-  <!-- ============================ DOEL 1 ============================ -->
-  <section id="stap2">
-    <div class="sec-head">
-      <p class="label">Sessie 1 &middot; stap 2 &middot; doel 1</p>
-      <h2>Na de meeting: een mail die klaarstaat</h2>
-    </div>
-    <p>De aanpak is steeds dezelfde. Je zet er oude voorbeelden in, Claude leidt daaruit de regels af en maakt één nieuwe mail, en jij geeft één correctie die in het bestand komt te staan en dus niet in de chat blijft hangen.</p>
-    <p>Meestal corrigeer je in de chat en begin je na de volgende meeting opnieuw. Hier corrigeer je in <span class="tt">stem.md</span> of in de werkwijze, zodat de volgende mail meteen beter is en het elke keer sneller gaat.</p>
-
-    <ol class="steps">
-      <li>Maak in je map een map <span class="tt">meetings</span> met daarin <span class="tt">aantekeningen</span>.
-        Zet er van twee of drie recente meetings in wat je hebt: je aantekeningen of het transcript, en
-        de mail die je er daarna over stuurde.</li>
-      <li>Kopieer het blok hieronder en plak het in een nieuw gesprek. Zet op de plek van [plak hier je doel] in je eigen woorden wat je wilt oplossen.</li>
-      <li>Lees <span class="tt">stem.md</span>. Klinkt het als jij? Wat niet klopt, zeg je meteen.</li>
-      <li>Claude laat zien welke onderdelen in je mails terugkomen en waar ze van elkaar afwijken. Kies
-        per afwijking welke variant de regel wordt.</li>
-      <li>Laat de mail maken van één meeting van deze week.</li>
-      <li>Zeg wat er niet klopt en zeg erbij <strong>waarom</strong>. Met "te lang" kan Claude weinig, met "ik begin nooit met een bedankje" wel. Controleer of die reden als regel in het bestand is gezet.</li>
-    </ol>
-
-    <div class="copy-card">
-      <div class="copy-head">
-        <p class="label">De mail na een meeting</p>
-        <button class="btn" id="copyWerk" type="button">Kopieer</button>
-      </div>
-      <div class="why" style="padding: 1.125rem 1.125rem 0;">
-        <div><span class="why-k">Waarvoor</span><span>Je stem en de vaste vorm afleiden uit echte mails, en dan één mail maken die klinkt als jij.</span></div>
-        <div><span class="why-k">Waar</span><span>Zelfde map, nieuw gesprek. Claude leest CLAUDE.md eerst.</span></div>
-        <div><span class="why-k">Daarna</span><span>Je hebt stem.md, meetings/werkwijze.md en het begin van todo.md.</span></div>
-      </div>
-      <pre id="promptWerk">Lees CLAUDE.md en geheugen.md. Lees daarna wat er in meetings/aantekeningen staat: mijn aantekeningen of transcripten, en de mails die ik na die meetings heb verstuurd. Kun je niet in een map werken, vraag mij dan om die stukken als bijlage en zet de bestanden die je maakt in beeld.
-
-Dit is wat ik wil oplossen:
-[plak hier je doel]
-
-Stap 1. Maak stem.md uit de mails die ik zelf heb verstuurd: aan wie ik schrijf, toon, woorden die ik gebruik, woorden die ik niet gebruik. Citeer bij elke observatie de zin waar je hem op baseert. Verzin er niets bij. Staan er geen mails van mij tussen, vraag er dan om en ga niet verder op aannames. Laat me het bestand zien en vraag wat er niet klopt.
-
-Stap 2. Leid uit dezelfde voorbeelden de vaste vorm van mijn mail na een meeting af: welke onderdelen komen terug (besluiten, to-do's, open punten), in welke volgorde, hoe lang, en hoe ik een to-do opschrijf. Benoem waar mijn mails van elkaar afwijken en vraag mij per afwijking welke variant de regel wordt. Schrijf het resultaat als meetings/werkwijze.md.
-
-Stap 3. Vraag mij om de aantekeningen of het transcript van één meeting van deze week. Niet meer vragen dan dat.
-
-Stap 4. Maak daaruit drie dingen. Een samenvatting van hooguit vijf regels. De to-do's, elk met wie, wat en wanneer; staat een naam of een datum niet in mijn aantekeningen, vraag het mij en vul niets zelf in. En de mail, in de stem uit stem.md en de vorm uit de werkwijze. Zet boven de mail: "Eerste versie. Ik maak hem af." Versturen doe ik zelf.
-
-Stap 5. Zet de to-do's die van mij zijn in todo.md, met de datum van vandaag en de meeting als bron. Bestaat todo.md nog niet, maak hem dan aan.
-
-Stap 6. Als ik iets corrigeer: vraag waarom, en zet de reden als regel in stem.md of in de werkwijze. Pas daarna de tekst aan. Laat me zien welke regel je hebt toegevoegd.
-
-Sluit af met: wat hebben we vastgelegd, en wat is de volgende stap? Zet dat in geheugen.md.</pre>
-    </div>
-  </section>
-
-  <!-- ============================ HUISWERK ============================ -->
-  <section id="huiswerk">
-    <div class="sec-head">
-      <p class="label">Tussen sessie 1 en 2</p>
-      <h2>Zelf één keer doen</h2>
-    </div>
-    <p>Doe hetzelfde werk nog een keer, zonder mij erbij. Het hoeft niet perfect te zijn, want het gaat erom dat je ervaart waar het schuurt, en dat lossen we samen op in sessie 2.</p>
-    <ol class="steps">
-      <li>Open na je eerstvolgende meeting een nieuw gesprek en zeg: <em>&ldquo;Lees CLAUDE.md, geheugen.md,
-        stem.md en de werkwijze van meetings. Ik heb een nieuwe meeting.&rdquo;</em> Plak je aantekeningen
-        erbij.</li>
-      <li>Corrigeer in het bestand, niet in de chat.</li>
-      <li>Schrijf op waar je to-do's nu nog meer staan: je mail, een notitie-app, papier, je hoofd.
-        Alleen de plekken, nog niet de to-do's zelf. Dat is de grondstof voor doel 2.</li>
-      <li>Noteer in <span class="tt">geheugen.md</span> in drie regels: wat klopte, wat niet, en wat je niet
-        wist te vragen. Dat is de agenda van sessie 2.</li>
-    </ol>
-  </section>
-
-  <!-- ============================ DOEL 2 ============================ -->
-  <section id="doel2">
-    <div class="sec-head">
-      <p class="label">Sessie 2 &middot; doel 2</p>
-      <h2>Eén lijst, met jouw regels voor wat voorgaat</h2>
-    </div>
-    <p>De to-do's uit je meetings komen al in <span class="tt">todo.md</span>, en wat nog mist is de rest en de volgorde. &ldquo;Met prioriteit&rdquo; kun je nog niet overdragen, want een collega zou je vragen wat bij jou voorgaat als twee dingen botsen. Zolang dat antwoord nergens staat kan ook Claude alleen maar gokken. We zetten dus eerst alles op één plek, daarna schrijf je drie regels in jouw woorden en pas dan sorteren we.</p>
-
-    <ol class="steps">
-      <li>Plak het blok hieronder en lever aan wat er op de andere plekken staat.</li>
-      <li>Kies de drie regels die het meeste verschil maken, want drie regels die je volhoudt zijn meer waard dan tien die je vergeet.</li>
-      <li>Laat de vijf dingen voor morgen zien, en kijk of je het met de volgorde eens bent.</li>
-    </ol>
-
-    <div class="copy-card">
-      <div class="copy-head">
-        <p class="label">De to-do-lijst</p>
-        <button class="btn" id="copyTodo" type="button">Kopieer</button>
-      </div>
-      <div class="why" style="padding: 1.125rem 1.125rem 0;">
-        <div><span class="why-k">Waarvoor</span><span>Alles wat openstaat op één plek, en drie eigen regels die bepalen wat voorgaat.</span></div>
-        <div><span class="why-k">Waar</span><span>Zelfde map, nieuw gesprek.</span></div>
-        <div><span class="why-k">Daarna</span><span>Je hebt één todo.md met je regels bovenaan. Elke meeting vult hem vanzelf aan.</span></div>
-      </div>
-      <pre id="promptTodo">Lees CLAUDE.md, geheugen.md en todo.md.
-
-Dit is wat ik wil oplossen:
-[plak hier je doel]
-
-Stap 1. Vraag mij waar mijn to-do's nu nog meer staan en laat me ze plakken of opnoemen, plek voor plek. Zet alles in todo.md, elk met: wat, voor wie, wanneer, en waar het vandaan komt. Verzin geen datums; wat geen datum heeft, krijgt "geen datum".
-
-Stap 2. Zeg wat je ziet, zonder advies: wat dubbel is, wat geen datum heeft, wat ouder is dan twee weken, en wat eigenlijk op iemand anders wacht.
-
-Stap 3. Vraag mij welke drie regels bepalen wat bij mij voorgaat. Stel de vragen één voor één. Schrijf de regels in mijn woorden bovenaan todo.md en laat het me zien.
-
-Stap 4. Sorteer de lijst met die regels en laat de vijf dingen voor morgen zien. Zet bij elk punt welke regel het daar zet.
-
-Stap 5. Als ik de volgorde afwijs: vraag waarom, en pas de regel aan of voeg er één toe.
-
-Sluit af met: wat hebben we vastgelegd, en wat is de volgende stap? Zet dat in geheugen.md.</pre>
-    </div>
-  </section>
-
-  <!-- ============================ DOEL 3 ============================ -->
+  <!-- ============================ OUTREACH ============================ -->
   <section id="doel3">
     <div class="sec-head">
-      <p class="label">Sessie 3 &middot; doel 3</p>
+      <p class="label">Sessie 1 &middot; stap 2 &middot; outreach</p>
       <h2>Outreach: een bericht dat klinkt als jij, en weten wie aan de beurt is</h2>
     </div>
-    <p>Je stem ligt er al en je lijst ook. Wat nog mist is per persoon een reden waarom je juist haar schrijft, want een bericht dat aan iedereen gestuurd had kunnen worden krijgt zelden antwoord. Daarnaast heb je een plek nodig waar staat wie je schreef, wanneer, en wie opvolging nodig heeft, omdat outreach meestal stopt bij het tweede bericht.</p>
+    <p>Je lijst staat er al. Wat nog mist is per persoon een reden waarom je juist haar schrijft, want een bericht dat aan iedereen gestuurd had kunnen worden krijgt zelden antwoord. Daarnaast heb je een plek nodig waar staat wie je schreef, wanneer, en wie opvolging nodig heeft, omdat outreach meestal stopt bij het tweede bericht.</p>
 
     <ol class="steps">
       <li>Maak in je map een map <span class="tt">outreach</span> en zet je lijst erin, als Excel of csv.</li>
@@ -1216,6 +1103,73 @@ Stap 4. Schrijf per persoon één eerste bericht, in de stem uit stem.md: kort, 
 Stap 5. Als ik zeg dat een bericht verstuurd is: werk de lijst bij met de datum en zet de opvolging een week later. Begin elk volgend gesprek over outreach met: wie is vandaag aan opvolging toe?
 
 Stap 6. Als ik iets corrigeer: vraag waarom, en zet de reden als regel in stem.md of in de werkwijze. Pas daarna de tekst aan. Laat me zien welke regel je hebt toegevoegd.
+
+Sluit af met: wat hebben we vastgelegd, en wat is de volgende stap? Zet dat in geheugen.md.</pre>
+    </div>
+  </section>
+
+  <!-- ============================ HUISWERK ============================ -->
+  <section id="huiswerk">
+    <div class="sec-head">
+      <p class="label">Tussen sessie 1 en 2</p>
+      <h2>Zelf verder met je outreach</h2>
+    </div>
+    <p>Ga in je outreach-chat verder met de flow, zonder mij erbij. Het hoeft niet perfect te zijn, want het gaat erom dat je ervaart waar het schuurt, en dat lossen we samen op in sessie 2.</p>
+    <ol class="steps">
+      <li>Geef de chat van sessie 1 de naam <span class="tt">outreach</span> en pin hem, zodat je er steeds
+        naar terug kunt. Voor een nieuwe taak begin je een nieuwe chat met dezelfde map.</li>
+      <li>Vraag Claude om samen met jou de flow te ontwerpen: via welk kanaal je iemand benadert
+        (LinkedIn of mail), het eerste bericht, het vervolg en de afsluiting. Geef je doel mee en de
+        tijd die je eraan wilt besteden.</li>
+      <li>Laat Claude je eerst interviewen en zijn aannames toetsen voordat hij iets schrijft, net als
+        in de sessie.</li>
+      <li>Corrigeer in het bestand, niet in de chat.</li>
+      <li>Schrijf op waar je to-do's en de status van je trajecten nu staan: je mail, een bord, een
+        Excel, papier, je hoofd. Alleen de plekken, nog niet de to-do's zelf. Dat is de grondstof voor
+        sessie 2.</li>
+      <li>Noteer in <span class="tt">geheugen.md</span> in drie regels: wat klopte, wat niet, en wat je niet
+        wist te vragen. Dat is de agenda van sessie 2.</li>
+    </ol>
+  </section>
+
+  <!-- ============================ OVERZICHT ============================ -->
+  <section id="doel2">
+    <div class="sec-head">
+      <p class="label">Sessie 2 &middot; 26 oktober</p>
+      <h2>Eén lijst, met jouw regels voor wat voorgaat</h2>
+    </div>
+    <p>Je to-do's en de status van je trajecten staan nu op verschillende plekken. &ldquo;Met prioriteit&rdquo; kun je nog niet overdragen, want een collega zou je vragen wat bij jou voorgaat als twee dingen botsen. Zolang dat antwoord nergens staat kan ook Claude alleen maar gokken. We zetten dus eerst alles op één plek, daarna schrijf je drie regels in jouw woorden en pas dan sorteren we.</p>
+
+    <ol class="steps">
+      <li>Plak het blok hieronder en lever aan wat er op de andere plekken staat.</li>
+      <li>Kies de drie regels die het meeste verschil maken, want drie regels die je volhoudt zijn meer waard dan tien die je vergeet.</li>
+      <li>Laat de vijf dingen voor morgen zien, en kijk of je het met de volgorde eens bent.</li>
+    </ol>
+
+    <div class="copy-card">
+      <div class="copy-head">
+        <p class="label">De to-do-lijst</p>
+        <button class="btn" id="copyTodo" type="button">Kopieer</button>
+      </div>
+      <div class="why" style="padding: 1.125rem 1.125rem 0;">
+        <div><span class="why-k">Waarvoor</span><span>Alles wat openstaat op één plek, en drie eigen regels die bepalen wat voorgaat.</span></div>
+        <div><span class="why-k">Waar</span><span>Zelfde map, nieuw gesprek.</span></div>
+        <div><span class="why-k">Daarna</span><span>Je hebt één todo.md met je regels bovenaan.</span></div>
+      </div>
+      <pre id="promptTodo">Lees CLAUDE.md, geheugen.md en todo.md.
+
+Dit is wat ik wil oplossen:
+[plak hier je doel]
+
+Stap 1. Vraag mij waar mijn to-do's nu nog meer staan en laat me ze plakken of opnoemen, plek voor plek. Zet alles in todo.md, elk met: wat, voor wie, wanneer, en waar het vandaan komt. Verzin geen datums; wat geen datum heeft, krijgt "geen datum".
+
+Stap 2. Zeg wat je ziet, zonder advies: wat dubbel is, wat geen datum heeft, wat ouder is dan twee weken, en wat eigenlijk op iemand anders wacht.
+
+Stap 3. Vraag mij welke drie regels bepalen wat bij mij voorgaat. Stel de vragen één voor één. Schrijf de regels in mijn woorden bovenaan todo.md en laat het me zien.
+
+Stap 4. Sorteer de lijst met die regels en laat de vijf dingen voor morgen zien. Zet bij elk punt welke regel het daar zet.
+
+Stap 5. Als ik de volgorde afwijs: vraag waarom, en pas de regel aan of voeg er één toe.
 
 Sluit af met: wat hebben we vastgelegd, en wat is de volgende stap? Zet dat in geheugen.md.</pre>
     </div>
@@ -1266,18 +1220,20 @@ Sluit af met: wat hebben we vastgelegd, en wat is de volgende stap? Zet dat in g
     <div class="sessies">
       <div class="sessie">
         <p class="datum">Sessie 1 &middot; 13 oktober</p>
-        <h3>Basis en de mail na een meeting</h3>
-        <p>Nog in te vullen na het gesprek: wat we kozen, wat we vastlegden, wat de volgende stap is.</p>
+        <h3>Basis en de start van je outreach</h3>
+        <p><strong>Gekozen:</strong> outreach voor je Strategy Sprints als eerste taak, en het overzicht over je to-do's en trajecten als tweede.</p>
+        <p><strong>Vastgelegd:</strong> een nieuwe <span class="tt">CLAUDE.md</span> en <span class="tt">geheugen.md</span>, en een map <span class="tt">outreach</span> met een plan, je lijst en je one-pager. Claude heeft je contacten in een nieuw bestand ingedeeld, met de herkomst erbij.</p>
+        <p><strong>Volgende stap:</strong> in je outreach-chat de flow ontwerpen, met het kanaal, het eerste bericht, het vervolg en de afsluiting.</p>
       </div>
       <div class="sessie">
-        <p class="datum">Sessie 2 &middot; datum volgt</p>
-        <h3>Eén lijst voor je to-do's</h3>
-        <p>Wat schuurde bij de mail, en drie regels voor wat bij jou voorgaat.</p>
+        <p class="datum">Sessie 2 &middot; maandag 26 oktober, 14:30 &middot; Dotslash Utrecht</p>
+        <h3>Je outreach-flow en één overzicht voor je to-do's</h3>
+        <p>Wat schuurde bij de outreach, je vraag of Claude de bedrijven bij je LinkedIn-contacten kan opzoeken, en daarna het overzicht over je to-do's en de status van je trajecten.</p>
       </div>
       <div class="sessie">
         <p class="datum">Sessie 3 &middot; datum volgt</p>
-        <h3>Outreach met opvolging</h3>
-        <p>Vijf eerste berichten in jouw stem, en een lijst die zegt wie aan de beurt is.</p>
+        <h3>Bepalen we na sessie 2</h3>
+        <p>Welke grotere taak we samen opzetten, kiezen we aan de hand van de eerste twee sessies.</p>
       </div>
     </div>
   </section>
@@ -1352,7 +1308,6 @@ Sluit af met: wat hebben we vastgelegd, en wat is de volgende stap? Zet dat in g
         copyText(text, btn, 'Kopieer');
       });
     }
-    wirePrompt('copyWerk', 'promptWerk', 'mt-nu', 'mt-goed');
     wirePrompt('copyTodo', 'promptTodo', 'td-nu', 'td-goed');
     wirePrompt('copyOutreach', 'promptOutreach', 'ou-nu', 'ou-goed');
 
@@ -1373,7 +1328,7 @@ Sluit af met: wat hebben we vastgelegd, en wat is de volgende stap? Zet dat in g
       todo: { on: ['claude','geheugen','todo'],
         why: 'Je stem is hier niet nodig, want je lijst is voor jezelf. Claude leest alleen wie je bent, wat er speelt en de lijst zelf met jouw drie regels bovenaan, en daardoor blijft dit klein.' },
       outreach: { on: ['claude','geheugen','stem','ou-werk','ou-lijst'],
-        why: 'De stem die je voor je mails hebt vastgelegd gebruikt je outreach ook, en daarom staat hij los van de taken en leg je hem maar één keer vast. De werkwijze en de lijst voor outreach bestaan nog niet, die maken we bij doel 3.' },
+        why: 'De stem die je voor je mails hebt vastgelegd gebruikt je outreach ook, en daarom staat hij los van de taken en leg je hem maar één keer vast. De map voor outreach met je plan en je lijst staat er sinds sessie 1.' },
       sparren: { on: ['claude','geheugen'],
         why: 'Hier leest Claude alleen het fundament en het geheugen, omdat sparren gaat over wie je bent en waar je staat. Sparren wordt dus vanzelf beter zodra de basis er is en je hoeft er niets extra’s voor te bouwen.' }
     };
