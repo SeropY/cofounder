@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Werkpagina Sandra. Van zes wensen naar één werkende basis.">
+<meta name="description" content="Werkpagina bij het AI Co-founder traject van Sandra.">
 <meta name="robots" content="noindex, nofollow">
-<meta property="og:title" content="Sandra: van zes wensen naar één werkende basis">
+<meta property="og:title" content="AI Co-founder traject Sandra">
 <meta property="og:description" content="Werkpagina bij de sessies. Doelen, uitleg, prompts en afspraken.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%231D33B8%22/></svg>">
 <style>
@@ -17,7 +17,7 @@
   button{font:inherit;color:inherit}
   details summary::-webkit-details-marker{display:none}
 </style>
-<title>Sandra: van zes wensen naar één werkende basis</title>
+<title>AI Co-founder traject Sandra</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
@@ -693,107 +693,47 @@
   .note .label { color: var(--ink); }
   .tree-step.here .snum::after { color: var(--route); }
   .line { background: repeating-linear-gradient(var(--route) 0 2px, transparent 2px 12px); }
+  .lijst { display: grid; gap: .5rem; }
+  .lijst li { position: relative; padding-left: 1.4rem; }
+  .lijst li::before { content: ""; position: absolute; left: 0; top: .78em; width: 10px; height: 2px; background: var(--route); }
 </style>
 <div class="wrap">
 
   <header>
     <p class="label">Sandra &middot; start 13 oktober 2026</p>
-    <h1>Van zes wensen naar één werkende basis</h1>
-    <p class="thesis">Je noemde zes dingen waarbij AI je kan ondersteunen, namelijk na een meeting meteen een samenvatting en to-do's in een mail, al je to-do's in één lijst, outreach naar vrouwelijke ondernemers met opvolging, je website, post-its uitwerken en live workshops samenvatten. <strong>Vijf daarvan hebben dezelfde basis nodig en dat is een plek waar staat wie je bent, hoe je schrijft en wat er openstaat.</strong> Met die basis gaan we samen aan de slag.</p>
-    <p>We doen dit stapsgewijs in drie sessies. In de eerste sessie bouwen we een basis die jou kent en maken we daarmee de mail na een meeting, in de tweede komen je to-do's in één lijst en in de derde pakken we de outreach op. Alles wat we bouwen staat in bestanden die van jou zijn en in jouw woorden. Deze pagina groeit mee, want na elke sessie zet ik de afspraken en de volgende stap erbij.</p>
+    <h1>AI Co-founder traject Sandra</h1>
+    <p>In de komende sessies zullen wij samen bouwen aan een fundament waarmee je AI kan inzetten die samen met jou bouwt en je context kent voor de taken die je wilt uitbesteden. Het doel is om in de
+      komende sessies stapsgewijs naar jouw niveau AI te implementeren in je werk:</p>
+    <ul class="lijst">
+      <li>In de eerste sessie leggen wij de basis, nemen wij jouw situaties door en gaan wij voor een
+        eerste wow-moment</li>
+      <li>Sessie 2 pakken wij een uitgebreidere situatie om comfortabel te worden met het verbinden van
+        externe tools</li>
+      <li>Sessie 3 bepalen wij aan de hand van de eerste 2 sessies welke grotere taak wij samen gaan
+        opzetten</li>
+    </ul>
+    <p>Deze pagina groeit mee, want na elke sessie zet ik de afspraken en de volgende stap erbij.</p>
   </header>
 
   <!-- ============================ DRIE DOELEN ============================ -->
   <section id="doelen">
     <div class="sec-head">
-      <p class="label">Eerst dit &middot; tien minuten</p>
-      <h2>Jouw doelen, in jouw woorden</h2>
+      <p class="label">Wat je noemde</p>
+      <h2>Zes taken waarbij AI je kan ondersteunen</h2>
     </div>
-    <p>Dit zijn de dingen die je noemde. Per doel vullen we samen twee vragen in, namelijk wat er nu gebeurt en waar je aan ziet dat het is opgelost. Dat tweede antwoord hebben we nodig om straks te weten of het écht werkt.</p>
-    <p class="step-note">Wat je typt blijft alleen op dit apparaat bewaard. Het wordt nergens
-      naartoe gestuurd. Je antwoorden worden verderop vanzelf in de prompts gezet.</p>
-
-    <div class="doelen">
-      <div class="geval">
-        <div class="doel-kop">
-          <span class="pnum">1</span>
-          <div><span class="kind">Tekst &middot; hier beginnen we</span>
-            <h3>Na een meeting: samenvatting en to-do's in een mail</h3>
-            <p>Een mail die klaarstaat om te checken en te versturen. Wat vastligt, hoeft niet na elke meeting opnieuw bedacht te worden. Post-its uitwerken en een workshop samenvatten gaan op dezelfde manier en nemen we hier mee.</p></div>
-        </div>
-        <div class="veld">
-          <label for="g-mt-nu">Hoe gaat het nu na een meeting?</label>
-          <span class="hint">Hoe leg je vast wat er gezegd is (zelf typen, een opname, een transcript), en hoe lang duurt het voor de mail de deur uit is?</span>
-          <textarea id="g-mt-nu" data-g="mt-nu"></textarea>
-        </div>
-        <div class="veld">
-          <label for="g-mt-goed">Wanneer is het goed?</label>
-          <span class="hint">Hoe snel na de meeting, hoe lang mag de mail zijn? En wat mag AI hierin nooit doen?</span>
-          <textarea id="g-mt-goed" data-g="mt-goed"></textarea>
-        </div>
-      </div>
-
-      <div class="geval later">
-        <div class="doel-kop">
-          <span class="pnum">2</span>
-          <div><span class="kind">Systeem &middot; zelfde stroom</span>
-            <h3>Al je to-do's in één lijst, met prioriteit</h3>
-            <p>Bouwt op doel 1: de to-do's uit elke meeting komen vanzelf in dezelfde lijst terecht.</p></div>
-        </div>
-        <div class="veld">
-          <label for="g-td-nu">Waar staan je to-do's nu?</label>
-          <span class="hint">In je mail, in notities, in een app, in je hoofd? En waar raak je ze kwijt?</span>
-          <textarea id="g-td-nu" data-g="td-nu"></textarea>
-        </div>
-        <div class="veld">
-          <label for="g-td-goed">Wanneer is het goed?</label>
-          <span class="hint">Wat wil je 's ochtends zien? En wat bepaalt bij jou wat voorgaat?</span>
-          <textarea id="g-td-goed" data-g="td-goed"></textarea>
-        </div>
-      </div>
-
-      <div class="geval later">
-        <div class="doel-kop">
-          <span class="pnum">3</span>
-          <div><span class="kind">Tekst en bijhouden &middot; als de basis staat</span>
-            <h3>Outreach naar vrouwelijke ondernemers, met opvolging</h3>
-            <p>Je lijst ligt er al, en wat nog mist is een bericht dat klinkt als jij en een plek waar staat wie je schreef en wie aan de beurt is.</p></div>
-        </div>
-        <div class="veld">
-          <label for="g-ou-nu">Hoe gaat het nu?</label>
-          <span class="hint">Hoeveel namen staan er in je lijst, hoeveel heb je benaderd, en waar stopt het: bij het eerste bericht of bij de opvolging?</span>
-          <textarea id="g-ou-nu" data-g="ou-nu"></textarea>
-        </div>
-        <div class="veld">
-          <label for="g-ou-goed">Wanneer is het goed?</label>
-          <span class="hint">Hoeveel berichten per week houd je vol, en wat moet een bericht opleveren?</span>
-          <textarea id="g-ou-goed" data-g="ou-goed"></textarea>
-        </div>
-      </div>
-    </div>
-    <p class="step-note" id="gevalStatus">Nog niets ingevuld.</p>
-
-    <div class="sec-head" style="margin-top:.5rem">
-      <p class="label">Waarom deze volgorde</p>
-      <h2 style="font-size:1.25rem">Zes wensen, drie sessies</h2>
-    </div>
+    <p>Dit zijn de zes taken die je noemde. In de sessie lopen we ze samen langs en bepalen we wat we
+      gaan doen.</p>
+    <ol class="steps">
+      <li>Na een meeting de samenvatting en to-do's meteen in een mail, die je even checkt en dan
+        verstuurt, mogelijk ook meteen in je agenda.</li>
+      <li>Al je to-do's automatisch in een to-do-lijst, wellicht met prioriteit.</li>
+      <li>Outreach naar vrouwelijke ondernemers inclusief opvolging, vanuit je lijst in Excel met
+        namen en LinkedIn-profielen, om een Strategy Sprint aan te bieden.</li>
+      <li>Je website bouwen en up-to-date houden.</li>
+      <li>Post-its uittypen en uitwerken.</li>
+      <li>Live workshops goed samenvatten.</li>
+    </ol>
     <div class="qa">
-      <div>
-        <h3>De meeting en de to-do-lijst zijn één stroom</h3>
-        <p>Je meeste to-do's ontstaan in een meeting, dus als de mail na de meeting goed staat heb je meteen de belangrijkste bron van je lijst te pakken. Daarom beginnen we daar en komt de lijst direct daarna, want dan hoeft hij alleen nog aangevuld en geordend te worden.</p>
-      </div>
-      <div>
-        <h3>Post-its en workshops zijn dezelfde beweging als de mail</h3>
-        <p>Post-its uitwerken en een live workshop samenvatten is in de kern hetzelfde als de mail na een meeting, want je gaat van ruwe input naar een stuk dat je alleen nog hoeft te checken. Daarom krijgen ze geen eigen sessie en herhalen we de aanpak zodra de mail staat, met een foto van je post-its en met één opname van een workshop. Of een recorder zoals Plaud beter werkt dan opnemen met je telefoon gaan we gewoon uitproberen met die ene echte workshop.</p>
-      </div>
-      <div>
-        <h3>Outreach is schrijven én bijhouden</h3>
-        <p>Een bericht aan iemand die je niet kent werkt alleen als het klinkt als jij, en die stem leggen we in sessie 1 al vast uit je eigen mails. De opvolging is hetzelfde werk als je to-do-lijst, namelijk bijhouden wie aan de beurt is, en in sessie 3 komen die twee samen.</p>
-      </div>
-      <div>
-        <h3>De website komt niet in deze drie uur</h3>
-        <p>Een site bouwen is een project op zich en past niet in drie keer een uur. Wat we in deze sessies doen helpt je er wel bij, omdat straks in bestanden staat wie je bent, voor wie je werkt en hoe je schrijft, en dat heeft een website als eerste nodig.</p>
-      </div>
       <div>
         <h3>Welke tool waarvoor</h3>
         <p>Je werkt voor het meeste met Claude Pro en met NotebookLM als je veel interviews moet verwerken, en dat blijft zo. We kijken per geval welke tool het beste is. Nieuw voor jou is Cowork, waarmee Claude in je eigen bestanden werkt in plaats van in een los gesprek. Daar gaan we in deze sessies mee aan de slag en dat richten we stapsgewijs in, zodat het je structureel helpt bij specifieke taken. Je projecten, zoals je loopbaancoach, blijven gewoon bestaan.</p>
@@ -1136,8 +1076,7 @@ Vraag daarna: welk werk pakken we als eerste op?</pre>
       <li>Maak in je map een map <span class="tt">meetings</span> met daarin <span class="tt">aantekeningen</span>.
         Zet er van twee of drie recente meetings in wat je hebt: je aantekeningen of het transcript, en
         de mail die je er daarna over stuurde.</li>
-      <li>Kopieer het blok hieronder en plak het in een nieuw gesprek. Wat je bij doel 1 hebt ingevuld,
-        wordt er bij het kopiëren vanzelf in gezet.</li>
+      <li>Kopieer het blok hieronder en plak het in een nieuw gesprek. Zet op de plek van [plak hier je doel] in je eigen woorden wat je wilt oplossen.</li>
       <li>Lees <span class="tt">stem.md</span>. Klinkt het als jij? Wat niet klopt, zeg je meteen.</li>
       <li>Claude laat zien welke onderdelen in je mails terugkomen en waar ze van elkaar afwijken. Kies
         per afwijking welke variant de regel wordt.</li>
