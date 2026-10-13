@@ -556,14 +556,10 @@
   .principe .chev { grid-area: auto; justify-self: end; }
   .principe[open] .chev { transform: rotate(-135deg) translate(-2px, -2px); }
 
-  .ladder { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .5rem; align-items: end; }
+  .ladder { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .5rem; align-items: stretch; }
   @media (max-width: 36rem) { .ladder { grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: stretch; } }
   .tree-step { display: flex; flex-direction: column; align-items: flex-start; gap: .15rem; padding: .75rem .8rem; border-radius: .625rem; border-color: var(--rule); background: var(--card); text-align: left; box-shadow: var(--shadow); }
-  .tree-step[data-step="1"] { min-height: 4.5rem; }
-  .tree-step[data-step="2"] { min-height: 5.5rem; }
-  .tree-step[data-step="3"] { min-height: 6.5rem; }
-  .tree-step[data-step="4"] { min-height: 7.5rem; }
-  @media (max-width: 36rem) { .tree-step { min-height: 0 !important; } }
+  .tree-step { min-height: 6rem; height: 100%; justify-content: flex-start; }
   .tree-step .snum { font-size: .75rem; color: var(--ink-faint); }
   .tree-step .sname { font-size: 1rem; color: var(--ink); }
   .tree-step .swhen { font-size: .75rem; font-weight: 500; color: var(--ink-faint); }
@@ -867,24 +863,24 @@
       </details>
     </div>
 
-    <!-- ---- blok 5: de ladder ---- -->
+    <!-- ---- blok 5: de fases ---- -->
     <div class="sec-head" style="margin-top:.5rem">
-      <p class="label">De ladder</p>
+      <p class="label">De fases</p>
       <h2 style="font-size:1.25rem">Wat er daarna komt, en waarom niet eerder</h2>
     </div>
-    <p class="step-note">Elke trede legt gedrag vaster. Je zet hem pas als de trede eronder klopt. Klik een trede.</p>
+    <p class="step-note">In elke fase leg je iets meer vast. Je gaat pas naar de volgende fase als de vorige klopt. Klik een fase.</p>
     <div class="ladder">
       <button type="button" class="tree-step here" data-step="1" aria-pressed="true">
-        <span class="snum">1</span><span class="sname">Bestanden</span><span class="swhen">nu</span>
+        <span class="snum">Fase 1</span><span class="sname">Bestanden</span><span class="swhen">nu</span>
       </button>
       <button type="button" class="tree-step" data-step="2" aria-pressed="false">
-        <span class="snum">2</span><span class="sname">Startprompt</span><span class="swhen">na 3 keer</span>
+        <span class="snum">Fase 2</span><span class="sname">Startprompt</span><span class="swhen">na 3 keer</span>
       </button>
       <button type="button" class="tree-step" data-step="3" aria-pressed="false">
-        <span class="snum">3</span><span class="sname">Skill</span><span class="swhen">na 2 keer ongewijzigd</span>
+        <span class="snum">Fase 3</span><span class="sname">Skill</span><span class="swhen">na 2 keer ongewijzigd</span>
       </button>
       <button type="button" class="tree-step" data-step="4" aria-pressed="false">
-        <span class="snum">4</span><span class="sname">Geplande taak</span><span class="swhen">alleen als nuttig</span>
+        <span class="snum">Fase 4</span><span class="sname">Geplande taak</span><span class="swhen">alleen als nuttig</span>
       </button>
     </div>
     <div class="ladder-why">
@@ -1399,9 +1395,9 @@ Sluit af met: wat hebben we vastgelegd, en wat is de volgende stap? Zet dat in g
 
     // --- ladder ---
     var STEPS = {
-      '1': 'Met bestanden weet Claude wie je bent en hoe je werk eruitziet, en jij start elk gesprek en zegt wat je wilt. Hier blijf je tot je hetzelfde werk drie keer hebt gedaan, want in die drie keer leer je wat je werkwijze eigenlijk is.',
-      '2': 'Na drie meetings leg je de herhaling vast als startprompt in een bestand, bijvoorbeeld meetings/start.md. Je plakt hem elke keer, en omdat het proces nu op papier staat kun je het ook aan een collega geven. Leg je het eerder vast, dan leg je een werkwijze vast die nog niet klopt.',
-      '3': 'Is de startprompt twee keer ongewijzigd gebruikt, dan wordt hij een skill: een vaste instructie die zegt wanneer hij geldt en wat er dan gebeurt. Je hoeft dan niet meer te onthouden dat het proces bestaat, want je zegt "meeting" en Claude pakt de stem, de werkwijze en je lijst erbij. Begin je hier te vroeg mee, dan leg je ook je fouten vast.',
+      '1': 'Een bestand is hier een gewoon tekstdocument in een map op je laptop. In het ene document staat wie je bent en hoe je wilt werken, en in het andere wat er nu speelt. Claude leest die documenten aan het begin van elk gesprek, zodat je dat niet steeds opnieuw hoeft uit te leggen. Jij start nog elk gesprek zelf en zegt wat je wilt. In deze fase blijf je tot je hetzelfde werk drie keer hebt gedaan, want in die drie keer leer je wat je werkwijze eigenlijk is.',
+      '2': 'Na drie meetings leg je de herhaling vast als startprompt, een vaste openingstekst die je bewaart in een document zoals meetings/start.md. Je plakt hem elke keer in een nieuw gesprek, en omdat het proces nu op papier staat kun je het ook aan een collega geven. Leg je het eerder vast, dan leg je een werkwijze vast die nog niet klopt.',
+      '3': 'Is de startprompt twee keer ongewijzigd gebruikt, dan wordt hij een skill, een vaste instructie die zegt wanneer hij geldt en wat er dan gebeurt. Je hoeft dan niet meer te onthouden dat het proces bestaat, want je zegt "meeting" en Claude pakt de stem, de werkwijze en je lijst erbij. Begin je hier te vroeg mee, dan leg je ook je fouten vast.',
       '4': 'Dit is optioneel en gaat om een taak die op een vast moment vanzelf draait, bijvoorbeeld elke ochtend je vijf dingen voor vandaag klaarzetten of elke vrijdag laten zien wie in je outreach aan opvolging toe is. Jij maakt het af, en Claude verstuurt nooit iets en verzet nooit zelf afspraken. Het is alleen de moeite waard bij werk dat vaak genoeg terugkomt.'
     };
     var ladderWhy = document.getElementById('ladderWhy');
