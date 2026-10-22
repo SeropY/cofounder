@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Out of Office, na sessie 3. Eén basis voor Claude die het hele team gebruikt.">
+<meta name="robots" content="noindex, nofollow">
+<meta property="og:title" content="Out of Office: één Claude voor het hele team">
+<meta property="og:description" content="Twee prompts, de inrichting en de antwoorden op je vragen van 22 oktober.">
+<title>Claude voor Out of Office</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌲</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<style>
+  /* Huisstijl seropyildiz.nl: blauw op ecru, genummerde secties met één blauwe lijn. */
+  *,*::before,*::after{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%;color-scheme:light}
+  body,h1,h2,h3,p,figure,pre,ul,ol{margin:0}
+  ol,ul{padding:0;list-style:none}
+  button{font:inherit;color:inherit}
+  details summary::-webkit-details-marker{display:none}
+
+  :root {
+    --ecru: #EDE8DC;
+    --duif: #CDD9EC;
+    --blauw: #1D33B8;
+    --marine: #14235C;
+    --inkt-zacht: #3A4777;
+    --lijn: rgba(20, 35, 92, 0.18);
+    --wit: #FBFAF6;
+    --kop: 'Bricolage Grotesque', 'Helvetica Neue', Arial, sans-serif;
+    --tekst: 'Instrument Sans', system-ui, sans-serif;
+    --mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+  }
+
+  body {
+    background: var(--ecru); color: var(--marine); font-family: var(--tekst);
+    font-size: 1.0625rem; line-height: 1.65; padding: 0 1rem 6rem; -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap { max-width: 44rem; margin: 0 auto; display: flex; flex-direction: column; gap: 4rem; }
+
+  h1, h2, h3 { font-family: var(--kop); font-weight: 700; line-height: 1.1; letter-spacing: -0.015em; text-wrap: balance; }
+  h1 { font-size: clamp(1.9rem, 6vw, 3.1rem); }
+  h2 { font-size: clamp(1.5rem, 3.2vw, 2.1rem); }
+  h3 { font-size: 1.15rem; }
+  p { text-wrap: pretty; }
+  a { color: var(--blauw); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  a:hover { text-decoration-thickness: 2px; }
+  :focus-visible { outline: 3px solid var(--blauw); outline-offset: 3px; }
+
+  .label { font-family: var(--mono); font-size: .8rem; letter-spacing: .04em; text-transform: uppercase; color: var(--inkt-zacht); }
+
+  header { padding-top: 3.5rem; display: flex; flex-direction: column; gap: 1.25rem; }
+  header .label { color: var(--marine); }
+  .thesis { font-size: clamp(1.1rem, 2vw, 1.3rem); color: var(--inkt-zacht); max-width: 38ch; }
+
+  section { display: flex; flex-direction: column; gap: 1.125rem; }
+  main { counter-reset: sectie; }
+  .sec-head { display: flex; flex-direction: column; gap: .6rem; counter-increment: sectie; }
+  .sec-head .label { display: flex; align-items: baseline; gap: 14px; color: var(--marine); }
+  .sec-head .label::before { content: counter(sectie, decimal-leading-zero); color: var(--blauw); }
+  .sec-head .label::after { content: ""; flex: 1; height: 2px; background: var(--blauw); opacity: .9; align-self: center; }
+
+  ol.steps { display: grid; gap: 18px; counter-reset: stap; }
+  ol.steps > li { position: relative; padding-left: 2.6rem; }
+  ol.steps > li::before { counter-increment: stap; content: counter(stap, decimal-leading-zero); position: absolute; left: 0; top: .15rem; font-family: var(--mono); color: var(--blauw); font-size: .95rem; }
+
+  .tt { font-family: var(--mono); font-size: .85em; overflow-wrap: anywhere; }
+
+  .files { display: grid; gap: 0; }
+  .file { border-top: 1px solid var(--lijn); padding: 14px 0 16px; display: flex; flex-direction: column; gap: .4rem; }
+  .file:last-child { border-bottom: 1px solid var(--lijn); }
+  .file-top { display: flex; justify-content: space-between; align-items: center; gap: .75rem; flex-wrap: wrap; }
+  .fname { font-family: var(--kop); font-weight: 700; font-size: 1.1rem; }
+  .tag { font-family: var(--mono); font-size: .72rem; letter-spacing: .06em; text-transform: uppercase; color: var(--inkt-zacht); border: 1px solid var(--lijn); border-radius: 999px; padding: 2px 8px; }
+  .tag.new { color: var(--blauw); border-color: var(--blauw); }
+  .file p { color: var(--inkt-zacht); }
+  .file p strong { color: var(--marine); font-weight: 600; }
+
+  .copy-card { background: var(--wit); border: 1px solid var(--lijn); box-shadow: 0 10px 30px rgba(20, 35, 92, 0.10); overflow: hidden; }
+  .copy-head { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 12px 14px 12px 18px; border-bottom: 1px solid var(--lijn); }
+  .copy-head .label { color: var(--marine); }
+  .why { padding: 1rem 18px 0; display: flex; flex-direction: column; gap: .35rem; font-size: .95rem; color: var(--inkt-zacht); }
+  .why > div { display: grid; grid-template-columns: 5.5rem 1fr; gap: .75rem; }
+  .why-k { font-family: var(--mono); font-size: .72rem; letter-spacing: .06em; text-transform: uppercase; color: var(--blauw); padding-top: .2rem; }
+  .btn { font-family: var(--kop); font-weight: 700; font-size: .9rem; border: 1px solid var(--blauw); background: var(--blauw); color: #fff; padding: 8px 14px; border-radius: 6px; cursor: pointer; white-space: nowrap; min-height: 40px; }
+  .btn:hover { background: var(--marine); border-color: var(--marine); }
+  .btn[data-done="1"] { background: transparent; color: var(--blauw); }
+  pre { padding: 18px; font-family: var(--mono); font-size: .78rem; line-height: 1.6; color: var(--inkt-zacht); max-height: 24rem; overflow: auto; white-space: pre-wrap; overflow-wrap: anywhere; }
+  pre.short { max-height: none; }
+
+  .note { background: var(--duif); border-radius: 8px; padding: 20px 22px; display: flex; flex-direction: column; gap: .5rem; }
+  .note .label { color: var(--marine); }
+
+  .qa { display: grid; gap: 0; }
+  .qa details { border-top: 1px solid var(--lijn); }
+  .qa details:last-child { border-bottom: 1px solid var(--lijn); }
+  .qa summary { cursor: pointer; padding: 16px 0; display: flex; justify-content: space-between; gap: 1rem; align-items: center; font-family: var(--kop); font-weight: 700; font-size: 1.1rem; line-height: 1.3; }
+  .chev { flex: none; width: .55rem; height: .55rem; border-right: 2px solid var(--blauw); border-bottom: 2px solid var(--blauw); transform: rotate(45deg) translate(-2px, -2px); transition: transform .18s ease; }
+  .qa details[open] .chev { transform: rotate(-135deg) translate(-2px, -2px); }
+  @media (prefers-reduced-motion: reduce) { .chev { transition: none; } }
+  .qa .body { padding: 0 0 18px; display: flex; flex-direction: column; gap: .7rem; color: var(--inkt-zacht); }
+  .qa .body strong { color: var(--marine); font-weight: 600; }
+  .sure { font-family: var(--mono); font-size: .72rem; letter-spacing: .06em; text-transform: uppercase; color: var(--blauw); border: 1px solid var(--blauw); border-radius: 999px; padding: 2px 8px; align-self: flex-start; }
+  .sure.half { color: var(--inkt-zacht); border-color: var(--inkt-zacht); }
+
+  ul.dots { display: grid; gap: 8px; }
+  ul.dots > li { padding-left: 1.4rem; position: relative; }
+  ul.dots > li::before { content: ""; position: absolute; left: 0; top: .78em; width: 10px; height: 2px; background: var(--blauw); }
+
+  footer { border-top: 1px solid var(--lijn); padding-top: 1.5rem; font-size: .95rem; color: var(--inkt-zacht); display: flex; flex-direction: column; gap: .4rem; }
+  footer p:last-child { font-family: var(--mono); font-size: .8rem; letter-spacing: .04em; text-transform: uppercase; }
+
+  @media (max-width: 30rem) {
+    header { padding-top: 2.25rem; }
+    .wrap { gap: 3rem; }
+    .why > div { grid-template-columns: 1fr; gap: 0; }
+  }
+</style>
+</head>
+<body>
+<main class="wrap">
+
+  <header>
+    <p class="label">Out of Office · na sessie 3 · 22 oktober 2026</p>
+    <h1>Eén Claude voor heel Out of Office</h1>
+    <p class="thesis">Vandaag hebben we de Drive geordend. De volgende stap is een basis die iedereen in Out of Office gebruikt. Dan weet Claude bij je collega's net zo goed wie jullie zijn als bij jou.</p>
+    <p><a href="../">← Terug naar de werkpagina van de drie sessies</a></p>
+  </header>
+
+  <section>
+    <div class="sec-head">
+      <p class="label">Hoe het in elkaar zit</p>
+      <h2>Vijf onderdelen, elk met een eigen taak</h2>
+    </div>
+    <p>Bij elk bestand telt: wie leest het, wie past het aan, en hoe vaak verandert het. Daarom staat niet alles in één bestand.</p>
+    <div class="files">
+      <div class="file">
+        <div class="file-top"><span class="fname">CLAUDE.md</span><span class="tag new">nieuw · stap 1</span></div>
+        <p>In de root van Out of Office. Wie jullie zijn, wie wat doet, de regels voor Claude en waar wat staat. Elke Claude leest dit als eerste.</p>
+        <p><strong>Jij bent eigenaar.</strong> Claude past het alleen aan als jij erom vraagt. Werkt een collega met Claude, dan stelt Claude een wijziging voor en legt diegene die aan jou voor. Zo blijft het bestand klein en spreekt het zichzelf niet tegen.</p>
+      </div>
+      <div class="file">
+        <div class="file-top"><span class="fname">leesmij per map</span><span class="tag">staat er sinds vandaag</span></div>
+        <p>Per hoofdmap een kort bestand over wat erin zit. Claude opent alleen de map die bij de taak hoort, in plaats van alles door te zoeken.</p>
+      </div>
+      <div class="file">
+        <div class="file-top"><span class="fname">besluiten.md</span><span class="tag new">nieuw · stap 1</span></div>
+        <p>Alleen besluiten die voor heel Out of Office gelden, met datum en naam. Je vult alleen onderaan aan.</p>
+        <p><strong>Waarom geen gedeeld geheugen?</strong> Als twee mensen tegelijk in hetzelfde bestand schrijven, maakt Google Drive een tweede kopie aan. Drie Claudes in één geheugen.md botsen dus vroeg of laat. Besluiten veranderen weinig, daar gaat het goed.</p>
+      </div>
+      <div class="file">
+        <div class="file-top"><span class="fname">werkwijzen/</span><span class="tag new">nieuw · stap 2</span></div>
+        <p>Vaste werkwijzen die iedereen kan gebruiken: de stem van Teamtraining en van de Foundation, de vorm van een draaiboek, en later de offerte en het voorstel. CLAUDE.md verwijst ernaar.</p>
+      </div>
+      <div class="file">
+        <div class="file-top"><span class="fname">ieders eigen project</span><span class="tag">per persoon</span></div>
+        <p>In Claude maakt iedereen een project met de map Out of Office erin, en één regel in de instructies: lees eerst CLAUDE.md. Dat is de brug tussen ieders eigen Claude en de gedeelde basis.</p>
+        <p>Elk project heeft ook een eigen geheugen dat tussen chats bewaard blijft. Dat is ieders persoonlijke werkgeheugen. Wat voor iedereen geldt, gaat naar besluiten.md.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <p class="label">Stap 1 · nu</p>
+      <h2>De basis voor het hele team</h2>
+    </div>
+    <ol class="steps">
+      <li>Open de Claude-app. Ga links naar <strong>Projects</strong>, klik op <strong>+</strong> en kies <strong>Use an existing folder</strong>. Kies de map Out of Office uit je Drive in Finder, en noem het project <span class="tt">Out of Office</span>.</li>
+      <li>Bij <strong>Instructions</strong> plak je de projectinstructie hieronder. Later aanpassen kan via de instellingen van het project.</li>
+      <li>Start in het project een nieuwe chat en plak de basisprompt. Reken op een kwartier vragen. Zeg ja als Claude vraagt of hij bestanden mag maken.</li>
+      <li>Lees CLAUDE.md daarna één keer door. Klinkt iets niet als Out of Office, verander het meteen.</li>
+    </ol>
+    <h3>De projectinstructie</h3>
+    <p>Of Claude een CLAUDE.md in je map uit zichzelf leest, staat nergens in de documentatie van Anthropic. Daarom zet je het in de instructies van het project, die gelden voor elke chat.</p>
+    <div class="copy-card">
+      <div class="copy-head">
+        <p class="label">Projectinstructie</p>
+        <button class="btn" id="copyInstructie" type="button">Kopieer</button>
+      </div>
+<pre class="short" id="promptInstructie">Lees aan het begin van elke chat eerst CLAUDE.md in de root van de map Out of Office, en volg wat daar staat.</pre>
+    </div>
+    <h3>De basisprompt</h3>
+    <div class="copy-card">
+      <div class="copy-head">
+        <p class="label">Basis Out of Office</p>
+        <button class="btn" id="copyStap1" type="button">Kopieer</button>
+      </div>
+      <div class="why">
+        <div><span class="why-k">Waarvoor</span><span>Zes vragen, waaruit CLAUDE.md en besluiten.md ontstaan.</span></div>
+        <div><span class="why-k">Waar</span><span>In Claude, in het project met de map Out of Office.</span></div>
+        <div><span class="why-k">Daarna</span><span>CLAUDE.md doorlezen en één keer testen.</span></div>
+      </div>
+<pre id="promptStap1">Ik ben Rutger, oprichter van Out of Office. Deze map is de gedeelde Drive van Out of Office. Mijn collega's werken er ook in, elk met hun eigen Claude. Bouw in de root van deze map een basis die elke Claude als eerste leest, bij iedereen: een CLAUDE.md voor heel Out of Office, en een besluiten.md.
+
+WAT ER AL IS
+- De map Kick-off Claude, met de basis die ik in september maakte (CLAUDE.md, geheugen.md, stem-bestanden, draaiboeken). Gebruik die als bron, maar verander en verplaats daar niets.
+- Leesmij-bestanden in de mappen op het bovenste niveau. Die gebruik je voor de mappenkaart.
+
+Lees eerst die bestanden. Begin daarna bij de vragen.
+
+REGELS
+- Stel de vragen één voor één. Wacht op mijn antwoord.
+- Laat bij elke vraag kort zien wat je er al over leest in de Kick-off, en vraag of dat voor heel Out of Office geldt.
+- Schrijf mijn antwoorden op in mijn woorden. Niet mooier maken, niets aanvullen.
+- Geef tijdens de vragen geen advies.
+- Verwijder, verplaats of hernoem niets. Maak de bestanden pas na de laatste vraag.
+
+DE VRAGEN
+1. Wat doet Out of Office, voor wie, en wat is het verschil tussen Teamtraining en de Foundation?
+2. Wie werken er, wat doet ieder, en wie mag welke map zien?
+3. Hoe willen we dat Claude met ons werkt? Bijvoorbeeld kort of uitgebreid, eerst vragen of meteen doen, en wanneer Claude ons moet tegenspreken.
+4. Welke regels uit de Kick-off gelden voor iedereen in Out of Office?
+5. Leg mij deze drie regels voor, één voor één. Vraag per regel: overnemen, aanpassen of niet.
+   a. Claude verwijdert nooit bestanden of mappen, maar verplaatst alleen. Lege mappen opruimen mag alleen met toestemming, per keer.
+   b. Claude verstuurt nooit zelf iets: geen mail, geen bericht, geen agenda-uitnodiging. Alleen concepten.
+   c. Gevoelige informatie blijft dicht. Persoonsgegevens van deelnemers (zoals paspoorten) en financiën lees, verplaats of vat je niet samen zonder het eerst te vragen.
+   Vraag daarna of ik nog meer regels heb.
+6. Laat de mappenkaart zien die je uit de leesmij's haalt: per hoofdmap één regel over waar die map voor is. Vraag wat er niet klopt of ontbreekt.
+
+DE BESTANDEN
+- CLAUDE.md in de root. Bovenaan deze twee alinea's:
+  "Lees dit bestand altijd eerst. Lees daarna alleen de leesmij van de map die bij de taak hoort, en open pas dan bestanden."
+  "Dit bestand is van Rutger. Pas het alleen aan als Rutger erom vraagt. Werk je met iemand anders en verdient iets een plek in dit bestand? Stel de wijziging dan voor, zodat diegene het aan Rutger kan voorleggen."
+  Daaronder de koppen: Wie we zijn, Wie doet wat, Hoe Claude met ons werkt, Regels, Waar staat wat, Werkwijzen.
+  Onder Werkwijzen komt voorlopig: "Nog leeg. Hier komen verwijzingen naar vaste werkwijzen, zoals de stem van Teamtraining en de Foundation, en draaiboeken."
+  Houd het kort. Past het niet op twee schermen, vraag dan wat eruit kan.
+- besluiten.md in de root. Bovenaan: "Alleen besluiten die voor heel Out of Office gelden. Voeg onderaan toe, met datum en naam. Wijzig of verwijder niets wat er al staat."
+  Zet er deze besluiten van 22 oktober 2026 in, met mijn naam:
+  - Alles komt in de map Out of Office, behalve de map strategiesprint.
+  - Leesmij-bestanden staan nu alleen op het bovenste niveau. Als de mappen af zijn, komen ze in alle mappen.
+  - De regels uit vraag 5, zoals ik ze heb vastgesteld.
+
+Maak niet meer dan deze twee bestanden. Laat ze mij zien, vraag wat er niet klopt en pas het aan.
+Sluit af met een korte lijst: wat staat er nu, en wat moet ik nog doen?</pre>
+    </div>
+
+    <p><strong>Test het daarna één keer.</strong> Start een nieuwe chat in het project en vraag: <span class="tt">Welk bestand las je als eerste, en wat zijn onze regels?</span> Noemt Claude de regels uit CLAUDE.md, dan werkt het.</p>
+
+    <div class="note">
+      <p class="label">Zo werk je erin</p>
+      <p><strong>Elke nieuwe taak is een nieuwe chat in het project.</strong> De map, de instructie en het geheugen zitten in het project, dus je begint nooit bij nul. In een lange chat leest Claude bij elk bericht het hele gesprek opnieuw: dat kost meer gebruik, en details van het begin raken kwijt.</p>
+      <p>Sluit elke chat af met: <span class="tt">Leg vast wat we besloten hebben.</span></p>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <p class="label">Stap 2 · als je mappen af zijn</p>
+      <h2>De werkwijzen verhuizen naar Out of Office</h2>
+    </div>
+    <p>In de Kick-off staan dingen die het hele team kan gebruiken: de twee stemmen en de vorm van je draaiboeken. Die gaan naar <span class="tt">werkwijzen/</span>. Doe dit pas als stap 1 staat en je de map "te beoordelen" hebt doorlopen. Eén ding tegelijk afmaken.</p>
+    <div class="copy-card">
+      <div class="copy-head">
+        <p class="label">Werkwijzen verhuizen</p>
+        <button class="btn" id="copyStap2" type="button">Kopieer</button>
+      </div>
+      <div class="why">
+        <div><span class="why-k">Waarvoor</span><span>De Kick-off-onderdelen voor het team op een vaste plek, en CLAUDE.md die ernaar verwijst.</span></div>
+        <div><span class="why-k">Waar</span><span>Zelfde project, nieuwe chat.</span></div>
+        <div><span class="why-k">Daarna</span><span>Elke nieuwe vaste werkwijze, zoals het voorstel, komt in dezelfde map.</span></div>
+      </div>
+<pre id="promptStap2">Lees CLAUDE.md. In de map Kick-off Claude staan werkwijzen die het hele team kan gebruiken. Die verhuizen we naar de map werkwijzen in Out of Office.
+
+REGELS
+- Verwijder niets. Je verplaatst alleen, en pas als ik het plan heb goedgekeurd.
+- Toets elke aanname bij mij met een multiple-choice vraag, met altijd een open optie.
+
+Stap 1. Maak een plan, en verplaats nog niets:
+- teamtraining/stem.md en foundation/stem.md naar werkwijzen/stem-teamtraining.md en werkwijzen/stem-foundation.md
+- de bestanden uit draaiboeken (zoals werkwijze.md en werkvormen.md) naar werkwijzen/draaiboek/
+- Vind je meer werkwijzen, bijvoorbeeld voor offertes of voorstellen, zet ze dan als vraag in het plan.
+- CLAUDE.md en geheugen.md uit de Kick-off verplaats je niet. Vraag mij wat ermee moet.
+Laat het plan zien als lijst: van, naar.
+
+Stap 2. Na mijn akkoord: verplaats de bestanden, en maak werkwijzen/leesmij.md met per werkwijze één regel over wanneer je hem gebruikt.
+
+Stap 3. Zet in CLAUDE.md onder Werkwijzen per werkwijze één regel met het pad. Dit is een aanpassing waar ik om vraag, dus dat mag.
+
+Stap 4. Voeg onderaan besluiten.md toe: de datum van vandaag, "Vaste werkwijzen staan in werkwijzen/", en mijn naam.
+
+Sluit af met: wat is verplaatst, en wat staat er nog in de Kick-off?</pre>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <p class="label">Later · collega's</p>
+      <h2>Als je collega's meedoen</h2>
+    </div>
+    <ol class="steps">
+      <li>Google Drive for desktop op hun laptop, zodat de map Out of Office in Finder staat.</li>
+      <li>Een eigen Claude-account, en in Claude een eigen project met de map Out of Office.</li>
+      <li>Dezelfde projectinstructie als hierboven, en dezelfde test.</li>
+    </ol>
+    <div class="note">
+      <p class="label">Toegang is ook de grens voor Claude</p>
+      <p>Claude ziet wat de persoon zelf in de Drive mag zien. Regel je per collega welke mappen die ziet, bijvoorbeeld team training wel en de stichting apart, dan is dat meteen ook wat hun Claude ziet. Een regel in CLAUDE.md is een afspraak, een recht in de Drive is een slot.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <p class="label">Je vragen van vandaag</p>
+      <h2>Wat ik heb uitgezocht</h2>
+    </div>
+    <p>Alles uit de documentatie van Anthropic, stand 22 oktober. Claude verandert snel, dus knoppen en menu's kunnen bij jou net anders heten.</p>
+    <div class="qa">
+      <details>
+        <summary>Kan de Drive vast in Claude, zodat elke chat er eerst naar kijkt?<span class="chev"></span></summary>
+        <div class="body">
+          <p class="sure">Ja, per persoon</p>
+          <p>Via een <strong>project in Claude</strong>. Je hangt de map er één keer aan, en elke nieuwe chat in dat project heeft de map en de instructies er meteen bij. Een losse chat heeft alleen de map die je er zelf aan toevoegt. Dat is ook het verschil tussen een project en een chat: een project onthoudt de map en de instructies, een chat begint elke keer opnieuw.</p>
+          <p>Een project met een map van je eigen computer is van jou alleen. Je kunt het niet met collega's delen, daarom maakt iedereen een eigen project.</p>
+          <p><a href="https://claude.com/docs/cowork/guide/projects">Bron: projecten in Claude</a></p>
+        </div>
+      </details>
+      <details>
+        <summary>Kan de skillbank in de Drive staan, zodat het team elkaars skills heeft?<span class="chev"></span></summary>
+        <div class="body">
+          <p class="sure half">Deels</p>
+          <p>Een skill die gewoon in een map staat, werkt niet als skill. Claude laadt alleen de skills die aan je eigen account hangen. Een skill-bestand in de Drive leest Claude als gewoon bestand.</p>
+          <p>Daarom de map <strong>werkwijzen/</strong>: daarin staat hetzelfde als in een skill (de stappen, de vorm, de regels), en CLAUDE.md verwijst ernaar. Dat werkt voor iedereen, zonder extra account.</p>
+          <p>Echte skills delen met het hele team kan met een <strong>Team-account</strong>. De eigenaar zet een skill dan in één keer klaar voor iedereen. Dat wordt interessant zodra een werkwijze twee keer ongewijzigd heeft gedraaid.</p>
+          <p><a href="https://support.claude.com/en/articles/12512180-use-skills-in-claude">Bron: skills gebruiken</a> · <a href="https://support.claude.com/en/articles/13119606-provision-and-manage-skills-for-your-organization">skills voor een organisatie</a></p>
+        </div>
+      </details>
+      <details>
+        <summary>Wat levert een Team-account op?<span class="chev"></span></summary>
+        <div class="body">
+          <p class="sure">Alvast wat ik weet</p>
+          <ul class="dots">
+            <li>Vanaf 2 personen, rond de €20 tot €25 per persoon per maand. Het lagere bedrag geldt bij een jaarabonnement. Anthropic noemt alleen dollarprijzen, zonder btw. De precieze prijs in euro's zie je bij het afrekenen.</li>
+            <li>Per persoon iets meer gebruik dan Pro (1,25 keer).</li>
+            <li>Gedeelde projecten in Claude, skills voor het hele team en één factuur.</li>
+          </ul>
+          <p>Voor wat jullie nu doen is het niet nodig: de Drive koppelen werkt ook met losse accounts. Hoe het in de praktijk bevalt, vraag ik nog na bij een team dat het gebruikt.</p>
+          <p><a href="https://support.claude.com/en/articles/9266767-what-is-the-team-plan">Bron: het Team-plan</a></p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <footer>
+    <p>Werkt iets anders dan hier staat, of loop je vast? Stuur me een berichtje, dan pas ik de pagina aan.</p>
+    <p>Serop Yildiz</p>
+  </footer>
+
+</main>
+<script>
+  (function () {
+    function wireCopy(btnId, preId) {
+      var btn = document.getElementById(btnId);
+      var pre = document.getElementById(preId);
+      if (!btn || !pre) return;
+      btn.addEventListener('click', function () {
+        var text = pre.innerText;
+        var done = function () {
+          btn.textContent = 'Gekopieerd';
+          btn.setAttribute('data-done', '1');
+          setTimeout(function () { btn.textContent = 'Kopieer'; btn.removeAttribute('data-done'); }, 2200);
+        };
+        function fallback() {
+          var sel = window.getSelection();
+          var range = document.createRange();
+          range.selectNodeContents(pre);
+          sel.removeAllRanges();
+          sel.addRange(range);
+          try { document.execCommand('copy'); done(); } catch (e) { /* selectie staat klaar */ }
+        }
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(done, fallback);
+        } else { fallback(); }
+      });
+    }
+    wireCopy('copyStap1', 'promptStap1');
+    wireCopy('copyInstructie', 'promptInstructie');
+    wireCopy('copyStap2', 'promptStap2');
+  })();
+</script>
+</body>
+</html>
